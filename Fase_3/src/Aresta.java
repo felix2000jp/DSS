@@ -57,7 +57,7 @@ public class Aresta {
     }
 
     @Override
-    protected Object clone()
+    public Object clone()
     {
         return new Aresta(this);
     }
