@@ -7,6 +7,7 @@ public class Palete implements Comparable<Palete>{
     String conteudo;
     String entidadeRegisto;
     Localizacao localizacao;
+    Boolean necessidadeTransporte;
 
     Palete()
     {
@@ -14,6 +15,7 @@ public class Palete implements Comparable<Palete>{
         this.conteudo = "";
         this.entidadeRegisto = "";
         this.localizacao = new Localizacao();
+        this.necessidadeTransporte = false;
     }
 
     Palete(Palete a)
@@ -22,14 +24,16 @@ public class Palete implements Comparable<Palete>{
         this.conteudo = a.getConteudo();
         this.entidadeRegisto = a.getEntidadeRegisto();
         this.localizacao = a.getLocaliacao();
+        this.necessidadeTransporte = a.getNecessidadeTransporte();
     }
 
-    public Palete(String codPalete, String conteudo, String entidadeRegisto, Localizacao localizacao)
+    public Palete(String codPalete, String conteudo, String entidadeRegisto, Localizacao localizacao,Boolean b)
     {
         this.codPalete = codPalete;
         this.conteudo = conteudo;
         this.entidadeRegisto = entidadeRegisto;
         this.localizacao = localizacao;
+        this.necessidadeTransporte = b;
     }
 
     public String getCodPalete()
@@ -65,6 +69,16 @@ public class Palete implements Comparable<Palete>{
     public Localizacao getLocaliacao()
     {
         return this.localizacao;
+    }
+
+    public Boolean getNecessidadeTransporte()
+    {
+        return necessidadeTransporte;
+    }
+
+    public void setNecessidadeTransporte(Boolean necessidadeTransporte)
+    {
+        this.necessidadeTransporte = necessidadeTransporte;
     }
 
     public void setLocaliacao(Localizacao localizacao)
