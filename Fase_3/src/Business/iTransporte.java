@@ -20,4 +20,7 @@ public interface iTransporte
     // Dado o código de um robot, atualiza este para o estado de indisponivel
     void setRobotIndisponivel(String codRobot);
 
+    //Dado o código de uma palete, retorna a localização do seu destino
+    Localizacao destinoPalete (String codPalete);
+
 }

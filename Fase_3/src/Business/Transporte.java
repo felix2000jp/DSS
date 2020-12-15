@@ -56,7 +56,25 @@ public class Transporte {
         return null;
     }
 
-    //public Localizacao destinoPalete (String codPalete)
+    public Localizacao destinoPalete (String codPalete)
+    {
+        Localizacao l = new Localizacao();
+        for(Palete palete : paletes.values())
+        {
+            if (palete.codPalete.equals(codPalete))
+            {
+               if (palete.getLocaliacao().equals(0))
+               {
+                   l.setLocaliacao(2);
+               } //funçao primeira disponivel
+               if (palete.getLocaliacao().getLocaliacao()>0 && palete.getLocaliacao().getLocaliacao()<11)
+               {
+                   l.setLocaliacao(11);
+               }
+            }
+        }
+        return l;
+    }
 
     public void addNecessidadeTransporte (String codPalete)
     {
