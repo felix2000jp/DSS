@@ -3,7 +3,7 @@ package Business;
 import java.util.Comparator;
 
 public class Palete implements Comparable<Palete>{
-    String codPalete;
+    public String codPalete;
     String conteudo;
     String entidadeRegisto;
     Localizacao localizacao;
@@ -34,6 +34,12 @@ public class Palete implements Comparable<Palete>{
         this.entidadeRegisto = entidadeRegisto;
         this.localizacao = localizacao;
         this.necessidadeTransporte = b;
+    }
+    public Palete(String codPalete, String conteudo, String entidadeRegisto, int localizacao) {
+        this.codPalete = codPalete;
+        this.conteudo = conteudo;
+        this.entidadeRegisto = entidadeRegisto;
+        this.localizacao = new Localizacao(localizacao);
     }
 
     public String getCodPalete()

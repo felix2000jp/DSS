@@ -3,7 +3,7 @@ package Business;
 public class Localizacao {
     int localiacao;
 
-    Localizacao()
+    public Localizacao()
     {
         this.localiacao = -1;
     }
