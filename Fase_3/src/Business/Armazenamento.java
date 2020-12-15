@@ -77,7 +77,7 @@ public class Armazenamento implements iArmazenamento{
 
         return localizacoes;
     }
-    
+
     @Override
     public Object clone()
     {

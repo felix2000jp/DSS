@@ -6,14 +6,14 @@ public class Palete implements Comparable<Palete>{
     String codPalete;
     String conteudo;
     String entidadeRegisto;
-    Localizacao localiacao;
+    Localizacao localizacao;
 
     Palete()
     {
         this.codPalete = "";
         this.conteudo = "";
         this.entidadeRegisto = "";
-        this.localiacao = new Localizacao();
+        this.localizacao = new Localizacao();
     }
 
     Palete(Palete a)
@@ -21,14 +21,15 @@ public class Palete implements Comparable<Palete>{
         this.codPalete = a.getCodPalete();
         this.conteudo = a.getConteudo();
         this.entidadeRegisto = a.getEntidadeRegisto();
-        this.localiacao = a.getLocaliacao();
+        this.localizacao = a.getLocaliacao();
     }
 
-    Palete(String codPalete, String conteudo, String entidadeRegisto)
+    public Palete(String codPalete, String conteudo, String entidadeRegisto, Localizacao localizacao)
     {
         this.codPalete = codPalete;
         this.conteudo = conteudo;
         this.entidadeRegisto = entidadeRegisto;
+        this.localizacao = localizacao;
     }
 
     public String getCodPalete()
@@ -63,12 +64,12 @@ public class Palete implements Comparable<Palete>{
 
     public Localizacao getLocaliacao()
     {
-        return this.localiacao;
+        return this.localizacao;
     }
 
-    public void setLocaliacao(Localizacao localiacao)
+    public void setLocaliacao(Localizacao localizacao)
     {
-        this.localiacao = localiacao;
+        this.localizacao = localizacao;
     }
 
     @Override
