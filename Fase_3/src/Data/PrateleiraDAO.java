@@ -1,5 +1,7 @@
 package Data;
 
+import Business.Localizacao;
+import Business.Palete;
 import Business.Prateleira;
 
 import java.sql.*;
@@ -15,8 +17,8 @@ public class PrateleiraDAO {
              Statement stm = conn.createStatement()) {
              String sql = "CREATE TABLE IF NOT EXISTS prateleira (" +
                           "CodPrateleira varchar(10) NOT NULL PRIMARY KEY," +
-                          "Localizacao int NOT NULL," +
-                          "Palete varchar(10), foreign key(Palete) references palete(CodPalete))";
+                          "Palete varchar(10), foreign key(Palete) references palete(CodPalete))"+
+                          "Localizacao int NOT NULL,";
                           // Assume-se uma relação 1-n entre Turma e Aluno
             stm.executeUpdate(sql);
         } catch (SQLException e) {
@@ -59,7 +61,7 @@ public class PrateleiraDAO {
         try (Connection conn = DriverManager.getConnection(DAOConfig.URL, DAOConfig.USERNAME, DAOConfig.PASSWORD);
              Statement stm = conn.createStatement();
              ResultSet rs =
-                     stm.executeQuery("SELECT Num FROM paletes WHERE CodPalete='"+key.toString()+"'")) {
+                     stm.executeQuery("SELECT Num FROM prateleiras WHERE CodPrateleira = '" + key.toString()+"'")) {
             r = rs.next();
         } catch (SQLException e) {
             // Database error!
@@ -80,8 +82,8 @@ public class PrateleiraDAO {
              Statement stm = conn.createStatement();
              ResultSet rs = stm.executeQuery("SELECT * FROM paletes WHERE CodPalete='"+key+"'")) {
             if (rs.next()) {  // A chave existe na tabela
-                p = new Prateleira( rs.getString("CodPrateleira"), rs.getString("Palete"),
-                        rs.getString("Localizacao"));
+                p = new Prateleira( rs.getString("CodPrateleira"), rs.getObject("Palete", Palete.class),
+                                    rs.getObject("Localizacao", Localizacao.class));
             }
         } catch (SQLException e) {
             // Database error!

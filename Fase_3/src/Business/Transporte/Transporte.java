@@ -1,13 +1,14 @@
-package Business;
+package Business.Transporte;
+
+import Business.Localizacao;
+import Business.Palete;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Transporte {
-    Map<String , Robot> robots; // Key --> codRobot     Value --> Robot
+    Map<String , Robot> robots;   // Key --> codRobot     Value --> Robot
     Map<String , Palete> paletes; // Key --> codPalete     Value --> Palete
-
-
 
     Transporte()
     {
@@ -62,7 +63,7 @@ public class Transporte {
     {
         for(Palete palete : paletes.values())
         {
-            if (palete.codPalete.equals(codPalete)) palete.setNecessidadeTransporte(true);
+            if (palete.getCodPalete().equals(codPalete)) palete.setNecessidadeTransporte(true);
         }
     }
 
@@ -70,7 +71,7 @@ public class Transporte {
     {
         for(Palete palete : paletes.values())
         {
-            if (palete.codPalete.equals(codPalete)) palete.setNecessidadeTransporte(false);
+            if (palete.getCodPalete().equals(codPalete)) palete.setNecessidadeTransporte(false);
         }
     }
 

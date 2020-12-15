@@ -1,7 +1,10 @@
-package Business;
+package Business.Armazem;
+
+import Business.Localizacao;
+import Business.Palete;
+import Business.Prateleira;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Armazenamento implements iArmazenamento{

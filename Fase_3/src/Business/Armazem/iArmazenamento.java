@@ -1,4 +1,6 @@
-package Business;
+package Business.Armazem;
+
+import Business.Localizacao;
 
 import java.util.Map;
 

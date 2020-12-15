@@ -1,4 +1,6 @@
-package Business;
+package Business.Transporte;
+
+import Business.Localizacao;
 
 public interface iTransporte
 {
