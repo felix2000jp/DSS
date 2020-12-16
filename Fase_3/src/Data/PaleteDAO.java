@@ -59,7 +59,7 @@ public class PaleteDAO implements Map<String, Palete> {
             // Actualizar a palete
             stm.executeUpdate(
                     "INSERT INTO paletes (CodPalete, Conteudo, EntidadeRegisto, Localizacao) VALUES ('"+p.getCodPalete()+"', '"+
-                            p.getConteudo()+"', '"+p.getEntidadeRegisto()+"', '"+ p.getLocaliacao().getLocaliacao()+"')" +
+                            p.getConteudo()+"', '"+p.getEntidadeRegisto()+"', '"+ p.getLocalizacao().getLocalizacao()+"')" +
                             "ON DUPLICATE KEY UPDATE Conteudo=VALUES(Conteudo),  EntidadeRegisto=VALUES(EntidadeRegisto)");
         } catch (SQLException e) {
             // Database error!
@@ -151,7 +151,7 @@ public class PaleteDAO implements Map<String, Palete> {
             if (rs.next()) {  // A chave existe na tabela
                 // Reconstruir o aluno com os dados obtidos da BD - a chave estranjeira da turma, não é utilizada aqui.
                 p = new Palete(rs.getString("CodPalete"), rs.getString("Conteudo"),
-                        rs.getString("EntidadeRegisto"), rs.getInt("Localizacao"));
+                        rs.getString("EntidadeRegisto"), rs.getString("Localizacao"));
             }
         } catch (SQLException e) {
             // Database error!

@@ -51,12 +51,12 @@ public class Armazenamento implements iArmazenamento{
 
     public Localizacao localizaPalete (String codPalete)
     {
-        return paletes.get(codPalete).getLocaliacao();
+        return paletes.get(codPalete).getLocalizacao();
     }
 
     public void atualizaLocalizacaoPalete (String codPalete, Localizacao localizacao)
     {
-        paletes.get(codPalete).setLocaliacao(localizacao);
+        paletes.get(codPalete).setLocalizacao(localizacao);
     }
 
     // Mudar no diagrama de Classes List<Palete> --> String
@@ -75,7 +75,7 @@ public class Armazenamento implements iArmazenamento{
 
         for(Palete palete : paletes.values())
         {
-            localizacoes.put(palete.getCodPalete(), palete.getLocaliacao());
+            localizacoes.put(palete.getCodPalete(), palete.getLocalizacao());
         }
 
         return localizacoes;

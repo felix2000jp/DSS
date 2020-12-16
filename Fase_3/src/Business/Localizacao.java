@@ -1,35 +1,45 @@
 package Business;
 
 public class Localizacao {
-    int localiacao;
+    int localizacao;
 
     public Localizacao()
     {
-        this.localiacao = -1;
+        this.localizacao = -1;
     }
 
     Localizacao(Localizacao a)
     {
-        this.localiacao = a.getLocaliacao();
+        this.localizacao = a.getLocalizacao();
     }
 
-    Localizacao(int localizacao)
+    public Localizacao(int localizacao)
     {
-        this.localiacao = localizacao;
+        this.localizacao = localizacao;
     }
 
-    public int getLocaliacao()
+    public Localizacao(String localizacao) {
+        this.localizacao = Integer.parseInt(localizacao);
+    }
+
+    public int getLocalizacao()
     {
-        return this.localiacao;
+        return this.localizacao;
     }
 
-    public void setLocaliacao(int localiacao) {
-        this.localiacao = localiacao;
+    public void setLocalizacao(int localizacao) {
+        this.localizacao = localizacao;
     }
 
     @Override
     public Object clone()
     {
         return new Localizacao(this);
+    }
+
+    @Override
+    public String toString() {
+        return     "localizacao=" + localizacao +
+                '}';
     }
 }

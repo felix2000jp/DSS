@@ -1,13 +1,10 @@
 package Business;
 
-import java.util.Comparator;
-
 public class Palete implements Comparable<Palete>{
-    public String codPalete;
-    String conteudo;
-    String entidadeRegisto;
-    Localizacao localizacao;
-    Boolean necessidadeTransporte;
+    private String codPalete;
+    private String conteudo;
+    private String entidadeRegisto;
+    private Localizacao localizacao;
 
     Palete()
     {
@@ -15,7 +12,6 @@ public class Palete implements Comparable<Palete>{
         this.conteudo = "";
         this.entidadeRegisto = "";
         this.localizacao = new Localizacao();
-        this.necessidadeTransporte = false;
     }
 
     Palete(Palete a)
@@ -23,23 +19,21 @@ public class Palete implements Comparable<Palete>{
         this.codPalete = a.getCodPalete();
         this.conteudo = a.getConteudo();
         this.entidadeRegisto = a.getEntidadeRegisto();
-        this.localizacao = a.getLocaliacao();
-        this.necessidadeTransporte = a.getNecessidadeTransporte();
+        this.localizacao = a.getLocalizacao();
     }
 
-    public Palete(String codPalete, String conteudo, String entidadeRegisto, Localizacao localizacao,Boolean b)
+    public Palete(String codPalete, String conteudo, String entidadeRegisto, String localizacao)
     {
         this.codPalete = codPalete;
         this.conteudo = conteudo;
         this.entidadeRegisto = entidadeRegisto;
-        this.localizacao = localizacao;
-        this.necessidadeTransporte = b;
+        this.localizacao = new Localizacao(localizacao);
     }
-    public Palete(String codPalete, String conteudo, String entidadeRegisto, int localizacao) {
+
+    public Palete(String codPalete, String conteudo, String entidadeRegisto) {
         this.codPalete = codPalete;
         this.conteudo = conteudo;
         this.entidadeRegisto = entidadeRegisto;
-        this.localizacao = new Localizacao(localizacao);
     }
 
     public String getCodPalete()
@@ -72,22 +66,12 @@ public class Palete implements Comparable<Palete>{
         this.entidadeRegisto = entidadeRegisto;
     }
 
-    public Localizacao getLocaliacao()
+    public Localizacao getLocalizacao()
     {
         return this.localizacao;
     }
 
-    public Boolean getNecessidadeTransporte()
-    {
-        return necessidadeTransporte;
-    }
-
-    public void setNecessidadeTransporte(Boolean necessidadeTransporte)
-    {
-        this.necessidadeTransporte = necessidadeTransporte;
-    }
-
-    public void setLocaliacao(Localizacao localizacao)
+    public void setLocalizacao(Localizacao localiacao)
     {
         this.localizacao = localizacao;
     }
@@ -103,4 +87,15 @@ public class Palete implements Comparable<Palete>{
         return this.codPalete.compareTo( o.getCodPalete() );
     }
 
+    @Override
+    public String toString() {
+        return "Palete{" +
+                "codPalete='" + codPalete + '\'' +
+                ", conteudo='" + conteudo + '\'' +
+                ", entidadeRegisto='" + entidadeRegisto + '\'' +
+                ", localizacao=" + localizacao +
+                '}';
+    }
 }
+
+
