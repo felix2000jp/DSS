@@ -39,7 +39,6 @@ public class Localizacao {
 
     @Override
     public String toString() {
-        return     "localizacao=" + localizacao +
-                '}';
+        return "localizacao = " + localizacao;
     }
 }

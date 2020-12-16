@@ -30,6 +30,14 @@ public class Palete implements Comparable<Palete>{
         this.localizacao = new Localizacao(localizacao);
     }
 
+    public Palete(String codPalete, String conteudo, String entidadeRegisto, int localizacao)
+    {
+        this.codPalete = codPalete;
+        this.conteudo = conteudo;
+        this.entidadeRegisto = entidadeRegisto;
+        this.localizacao = new Localizacao(localizacao);
+    }
+
     public Palete(String codPalete, String conteudo, String entidadeRegisto) {
         this.codPalete = codPalete;
         this.conteudo = conteudo;
@@ -93,7 +101,7 @@ public class Palete implements Comparable<Palete>{
                 "codPalete='" + codPalete + '\'' +
                 ", conteudo='" + conteudo + '\'' +
                 ", entidadeRegisto='" + entidadeRegisto + '\'' +
-                ", localizacao=" + localizacao +
+                ", " + localizacao +
                 '}';
     }
 }

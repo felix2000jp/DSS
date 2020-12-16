@@ -11,12 +11,13 @@ import java.util.Set;
 public class PaleteDAO implements Map<String, Palete> {
     private static PaleteDAO singleton = null;
 
-    public PaleteDAO() {
+    public PaleteDAO()
+    {
         try (Connection conn = DriverManager.getConnection(DAOConfig.URL + "?user="+DAOConfig.USERNAME + "&password="+DAOConfig.PASSWORD
                 +"&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
              Statement stm = conn.createStatement()) {
             String sql = "CREATE TABLE IF NOT EXISTS paletes (" +
-                    "CodPalete varchar(10) NOT NULL PRIMARY KEY," +
+                    "CodPalete varchar(20) NOT NULL PRIMARY KEY," +
                     "Conteudo varchar(45) DEFAULT NULL," +
                     "EntidadeRegisto varchar(45) DEFAULT NULL," +
                     "Localizacao varchar(45) DEFAULT NULL)";
@@ -50,7 +51,8 @@ public class PaleteDAO implements Map<String, Palete> {
      * @return para já retorna sempre null (deverá devolver o valor existente, caso exista um)
      * @throws NullPointerException Em caso de erro - deveriam ser criadas exepções do projecto
      */
-    public Palete put(String key, Palete p) {
+    public Palete put(String key, Palete p)
+    {
         Palete res = null;
         try (Connection conn = DriverManager.getConnection(DAOConfig.URL + "?user="+DAOConfig.USERNAME + "&password="+DAOConfig.PASSWORD
                 +"&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
@@ -60,7 +62,8 @@ public class PaleteDAO implements Map<String, Palete> {
             stm.executeUpdate(
                     "INSERT INTO paletes (CodPalete, Conteudo, EntidadeRegisto, Localizacao) VALUES ('"+p.getCodPalete()+"', '"+
                             p.getConteudo()+"', '"+p.getEntidadeRegisto()+"', '"+ p.getLocalizacao().getLocalizacao()+"')" +
-                            "ON DUPLICATE KEY UPDATE Conteudo=VALUES(Conteudo),  EntidadeRegisto=VALUES(EntidadeRegisto)");
+                            "ON DUPLICATE KEY UPDATE Conteudo=VALUES(Conteudo),  EntidadeRegisto=VALUES(EntidadeRegisto), " +
+                            "Localizacao=VALUES(Localizacao)");
         } catch (SQLException e) {
             // Database error!
             e.printStackTrace();
@@ -73,7 +76,8 @@ public class PaleteDAO implements Map<String, Palete> {
     /**
      * @return número de paletes na base de dados
      */
-    public int size() {
+    public int size()
+    {
         int i = 0;
         try (Connection conn = DriverManager.getConnection(DAOConfig.URL + "?user="+DAOConfig.USERNAME + "&password="+DAOConfig.PASSWORD
                 +"&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
@@ -107,13 +111,14 @@ public class PaleteDAO implements Map<String, Palete> {
      * @return true se a turma existe
      * @throws NullPointerException Em caso de erro - deveriam ser criadas exepções do projecto
      */
-    public boolean containsKey(Object key) {
+    public boolean containsKey(Object key)
+    {
         boolean r;
         try (Connection conn = DriverManager.getConnection(DAOConfig.URL + "?user="+DAOConfig.USERNAME + "&password="+DAOConfig.PASSWORD
                 +"&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
              Statement stm = conn.createStatement();
              ResultSet rs =
-                     stm.executeQuery("SELECT CodPalete FROM paletes WHERE CodPalete='"+key.toString()+"'")) {
+                     stm.executeQuery("SELECT CodPalete FROM paletes WHERE CodPalete='"+key+"'")) {
             r = rs.next();
         } catch (SQLException e) {
             // Database error!
@@ -175,7 +180,10 @@ public class PaleteDAO implements Map<String, Palete> {
         try (Connection conn = DriverManager.getConnection(DAOConfig.URL + "?user="+DAOConfig.USERNAME + "&password="+DAOConfig.PASSWORD
                 +"&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
              Statement stm = conn.createStatement()) {
-            stm.executeUpdate("DELETE FROM paletes WHERE CodPalete='"+key+"'");
+            stm.execute("SET FOREIGN_KEY_CHECKS = 0;");
+            stm.execute("UPDATE prateleiras SET Palete=NULL WHERE Palete='" + key + "'");
+            stm.execute("DELETE FROM paletes WHERE CodPalete='"+key+"'");
+            stm.execute("SET FOREIGN_KEY_CHECKS = 1;");
         } catch (Exception e) {
             // Database error!
             e.printStackTrace();
@@ -202,11 +210,15 @@ public class PaleteDAO implements Map<String, Palete> {
      * @throws NullPointerException ...
      * @throws NullPointerException Em caso de erro - deveriam ser criadas exepções do projecto
      */
-    public void clear() {
+    public void clear()
+    {
         try (Connection conn = DriverManager.getConnection(DAOConfig.URL + "?user="+DAOConfig.USERNAME + "&password="+DAOConfig.PASSWORD
                 +"&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-             Statement stm = conn.createStatement()) {
+            Statement stm = conn.createStatement()) {
+            stm.execute("SET FOREIGN_KEY_CHECKS = 0;");
+            stm.execute("UPDATE prateleiras SET Palete=NULL");
             stm.executeUpdate("TRUNCATE paletes");
+            stm.execute("SET FOREIGN_KEY_CHECKS = 1;");
         } catch (SQLException e) {
             // Database error!
             e.printStackTrace();

@@ -59,6 +59,15 @@ public class Prateleira implements Comparable<Prateleira> {
     }
 
     @Override
+    public String toString() {
+        return "Prateleira {" +
+                "codPrateleira='" + this.codPrateleira + '\'' +
+                ", palete=" + this.palete +
+                ", localizacao=" + localizacao +
+                '}';
+    }
+
+    @Override
     public Object clone()
     {
         return new Prateleira(this);
