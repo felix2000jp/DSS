@@ -1,5 +1,6 @@
 package Data;
 
+import Business.Localizacao;
 import Business.Palete;
 import Business.Prateleira;
 
@@ -13,16 +14,25 @@ public class PrateleiraDAO implements Map<String, Prateleira>
 {
     private static PrateleiraDAO singleton = null;
 
-    public PrateleiraDAO ()
+    private PrateleiraDAO ()
     {
-        try (Connection conn = DriverManager.getConnection(DAOConfig.URL + "?user="+DAOConfig.USERNAME + "&password="+DAOConfig.PASSWORD
-                +"&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-            Statement stm = conn.createStatement()) {
-            String sql = "CREATE TABLE IF NOT EXISTS prateleiras (" +
-                    "CodPrateleira varchar(20) NOT NULL PRIMARY KEY," +
-                    "Palete varchar(10), foreign key(Palete) references paletes(CodPalete)," +
-                    "Localizacao int NOT NULL)";  // Assume-se uma relação 1-0..1 entre Prateleira e Palete
-            stm.executeUpdate(sql);
+        try
+        (
+            Connection conn = DriverManager.getConnection(DAOConfig.URL + "?user=" +
+                                                              DAOConfig.USERNAME + "&password=" +
+                                                              DAOConfig.PASSWORD +
+                                                              "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+            Statement stm = conn.createStatement()
+        )
+        {
+            String sql = "";
+            sql = "CREATE TABLE IF NOT EXISTS localizacoes (Localizacao varchar(45) NOT NULL PRIMARY KEY)";
+            stm.execute(sql);
+            sql = "CREATE TABLE IF NOT EXISTS prateleiras (" +
+                  "CodPrateleira varchar(20) NOT NULL PRIMARY KEY, " +
+                  "Palete varchar(10), foreign key(Palete) references paletes(CodPalete), " +
+                  "Localizacao varchar(45), foreign key(Localizacao) references localizacoes(Localizacao))";
+            stm.execute(sql);
         } catch (SQLException e) {
             // Erro a criar tabela...
             e.printStackTrace();
@@ -30,30 +40,60 @@ public class PrateleiraDAO implements Map<String, Prateleira>
         }
     }
 
-    /**
-     * Implementação do padrão Singleton
-     *
-     * @return devolve a instância única desta classe
-     */
     public static PrateleiraDAO getInstance()
     {
-        if (PrateleiraDAO.singleton == null) {
+        if (PrateleiraDAO.singleton == null)
+        {
             PrateleiraDAO.singleton = new PrateleiraDAO();
         }
         return PrateleiraDAO.singleton;
     }
 
     @Override
+    public Prateleira put(String key, Prateleira p)
+    {
+        Palete palete = p.getPalete();
+        Localizacao local = p.getLocalizacao();
+        try
+        (
+            Connection conn = DriverManager.getConnection(DAOConfig.URL + "?user=" +
+                                                              DAOConfig.USERNAME + "&password=" +
+                                                              DAOConfig.PASSWORD +
+                                                              "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+            Statement stm = conn.createStatement()
+        )
+        {
+            stm.execute("INSERT INTO localizacoes (Localizacao) VALUES ('" + local.getLocalizacao() + "') " +
+                            "ON DUPLICATE KEY UPDATE Localizacao=VALUES(Localizacao)");
+            stm.execute("INSERT INTO prateleiras (CodPrateleira, Palete, Localizacao) " +
+                             "VALUES('" + p.getCodPrateleira() + "','" + palete.getCodPalete() + "','" + local.getLocalizacao() + "') "+
+                             "ON DUPLICATE KEY UPDATE Palete=VALUES(Palete)");
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
+        }
+        return null;
+    }
+
+    @Override
     public int size()
     {
         int n = 0;
-        try (Connection conn = DriverManager.getConnection(
-                DAOConfig.URL + "?user="+DAOConfig.USERNAME + "&password="+DAOConfig.PASSWORD
-                        +"&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-             Statement stm = conn.createStatement();
-             ResultSet rs = stm.executeQuery("SELECT count(*) FROM prateleiras"))
+        try
+        (
+            Connection conn = DriverManager.getConnection(DAOConfig.URL + "?user=" +
+                                                              DAOConfig.USERNAME + "&password=" +
+                                                              DAOConfig.PASSWORD +
+                                                              "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT count(*) FROM prateleiras")
+        )
         {
-            if(rs.next()){
+            if(rs.next())
+            {
                 n = rs.getInt(1);
             }
 
@@ -65,7 +105,8 @@ public class PrateleiraDAO implements Map<String, Prateleira>
     }
 
     @Override
-    public boolean isEmpty() {
+    public boolean isEmpty()
+    {
         return this.size() == 0;
     }
 
@@ -73,16 +114,20 @@ public class PrateleiraDAO implements Map<String, Prateleira>
     public boolean containsKey(Object key)
     {
         boolean r;
-        try (
-                Connection conn = DriverManager.getConnection(
-                        DAOConfig.URL + "?user="+DAOConfig.USERNAME + "&password="+DAOConfig.PASSWORD
-                                +"&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-                Statement stm = conn.createStatement();
-                ResultSet rs = stm.executeQuery("SELECT CodPrateleira FROM prateleiras " +
-                        "WHERE CodPrateleira='"+key+ "'" ))
+        try
+        (
+            Connection conn = DriverManager.getConnection(DAOConfig.URL + "?user=" +
+                                                              DAOConfig.USERNAME + "&password=" +
+                                                              DAOConfig.PASSWORD +
+                                                              "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT CodPrateleira FROM prateleiras " + "WHERE CodPrateleira = '" + key + "'" )
+        )
         {
             r = rs.next();
-        }catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
             throw new NullPointerException(e.getMessage());
         }
@@ -90,62 +135,51 @@ public class PrateleiraDAO implements Map<String, Prateleira>
     }
 
     @Override
-    public boolean containsValue(Object value) {
-        return false;
-    }
-
-    @Override
     public Prateleira get(Object key)
     {
         Prateleira p = null;
-        try (Connection conn = DriverManager.getConnection(
-                DAOConfig.URL + "?user="+DAOConfig.USERNAME + "&password="+DAOConfig.PASSWORD
-                        +"&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-             Statement stm = conn.createStatement();
-             ResultSet rs = stm.executeQuery("SELECT * FROM prateleiras WHERE CodPrateleira = '" + key+ "'"))
+        try
+        (
+            Connection conn = DriverManager.getConnection(DAOConfig.URL + "?user=" +
+                                                              DAOConfig.USERNAME + "&password=" +
+                                                              DAOConfig.PASSWORD +
+                                                              "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * FROM prateleiras " + "WHERE CodPrateleira = '" + key + "'" );
+        )
         {
-            PaleteDAO palete = new PaleteDAO();
             if(rs.next())
             {
-                p = new Prateleira(rs.getString("CodPrateleira"), palete.get(rs.getString("Palete")),
-                        rs.getString("Localizacao"));
+                p = new Prateleira( rs.getString("CodPrateleira"), PaleteDAO.getInstance().get(rs.getString("Palete")), rs.getString("Localizacao") );
             }
 
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
             throw new NullPointerException(e.getMessage());
         }
         return p;
     }
 
-    @Override
-    public Prateleira put(String key, Prateleira p)
-    {
-        Palete palete = p.getPalete();
-        try (Connection conn = DriverManager.getConnection(
-                DAOConfig.URL + "?user="+DAOConfig.USERNAME + "&password="+DAOConfig.PASSWORD
-                        +"&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-            Statement stm = conn.createStatement()){
-            stm.executeUpdate("INSERT INTO prateleiras (CodPrateleira, Palete, Localizacao) " +
-                    "VALUES('" + p.getCodPrateleira() + "','" + palete.getCodPalete() + "','" + p.getLocalizacao().getLocalizacao() + "') "+
-                    "ON DUPLICATE KEY UPDATE Palete=VALUES(Palete), Localizacao=VALUES(Localizacao)");
-
-        }catch (Exception e){
-            e.printStackTrace();
-            throw new NullPointerException(e.getMessage());
-        }
-        return null;
-    }
 
     @Override
     public Prateleira remove(Object key)
     {
         Prateleira p = this.get(key);
-        try (Connection conn = DriverManager.getConnection(DAOConfig.URL + "?user="+DAOConfig.USERNAME + "&password="+DAOConfig.PASSWORD
-                +"&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-             Statement stm = conn.createStatement()) {
-            stm.executeUpdate("DELETE FROM prateleiras WHERE CodPrateleira='"+key+"'");
-        } catch (Exception e) {
+        try
+        (
+            Connection conn = DriverManager.getConnection(DAOConfig.URL + "?user=" +
+                                                              DAOConfig.USERNAME + "&password=" +
+                                                              DAOConfig.PASSWORD +
+                                                              "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+            Statement stm = conn.createStatement()
+        )
+        {
+            stm.execute("DELETE FROM prateleiras WHERE CodPrateleira = '" + key + "'");
+        }
+        catch (Exception e)
+        {
             // Database error!
             e.printStackTrace();
             throw new NullPointerException(e.getMessage());
@@ -164,8 +198,12 @@ public class PrateleiraDAO implements Map<String, Prateleira>
     @Override
     public void clear()
     {
-        try (Connection conn = DriverManager.getConnection(DAOConfig.URL + "?user="+DAOConfig.USERNAME + "&password="+DAOConfig.PASSWORD
-                +"&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+        try
+        (
+            Connection conn = DriverManager.getConnection(DAOConfig.URL + "?user=" +
+                                                              DAOConfig.USERNAME + "&password=" +
+                                                              DAOConfig.PASSWORD +
+                                                              "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
             Statement stm = conn.createStatement()) {
             stm.execute("SET FOREIGN_KEY_CHECKS = 0;");
             stm.executeUpdate("TRUNCATE prateleiras");
@@ -178,18 +216,17 @@ public class PrateleiraDAO implements Map<String, Prateleira>
     }
 
     @Override
-    public Set<String> keySet() {
-        return null;
-    }
-
-    @Override
     public Collection<Prateleira> values()
     {
         Collection<Prateleira> col = new HashSet<>();
-        try (Connection conn = DriverManager.getConnection(DAOConfig.URL + "?user="+DAOConfig.USERNAME + "&password="+DAOConfig.PASSWORD
-                +"&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-             Statement stm = conn.createStatement();
-             ResultSet rs = stm.executeQuery("SELECT CodPrateleira FROM prateleiras")) {
+        try
+        (
+            Connection conn = DriverManager.getConnection(DAOConfig.URL + "?user=" +
+                                                              DAOConfig.USERNAME + "&password=" +
+                                                              DAOConfig.PASSWORD +
+                                                              "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT CodPrateleira FROM prateleiras")) {
             while (rs.next())
             {
                 col.add(this.get(rs.getString("CodPrateleira")));
@@ -203,7 +240,20 @@ public class PrateleiraDAO implements Map<String, Prateleira>
     }
 
     @Override
-    public Set<Entry<String, Prateleira>> entrySet() {
-        return null;
+    public Set<String> keySet()
+    {
+        throw new NullPointerException("Not Implemented!");
+    }
+
+    @Override
+    public Set<Entry<String, Prateleira>> entrySet()
+    {
+        throw new NullPointerException("Not Implemented!");
+    }
+
+    @Override
+    public boolean containsValue(Object value)
+    {
+        throw new NullPointerException("Not Implemented!");
     }
 }

@@ -14,7 +14,7 @@ public class Palete implements Comparable<Palete>{
         this.localizacao = new Localizacao();
     }
 
-    Palete(Palete a)
+    public Palete(Palete a)
     {
         this.codPalete = a.getCodPalete();
         this.conteudo = a.getConteudo();
@@ -38,10 +38,11 @@ public class Palete implements Comparable<Palete>{
         this.localizacao = new Localizacao(localizacao);
     }
 
-    public Palete(String codPalete, String conteudo, String entidadeRegisto) {
+    public Palete(String codPalete, String conteudo, String entidadeRegisto, Localizacao localizacao) {
         this.codPalete = codPalete;
         this.conteudo = conteudo;
         this.entidadeRegisto = entidadeRegisto;
+        this.localizacao = localizacao;
     }
 
     public String getCodPalete()

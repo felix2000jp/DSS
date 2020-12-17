@@ -3,68 +3,87 @@ package Business.Armazem;
 import Business.Localizacao;
 import Business.Palete;
 import Business.Prateleira;
+import Data.PaleteDAO;
+import Data.PrateleiraDAO;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Armazenamento implements iArmazenamento{
-    Map<String , Prateleira> prateleiras; // Key --> codPrateleira     Value --> Prateleira
     Map<String , Palete> paletes;         // Key --> codPalete         Value --> Palete
+    Map<String , Prateleira> prateleiras; // Key --> codPrateleira     Value --> Prateleira
 
-    Armazenamento()
+    public Armazenamento()
     {
-        this.prateleiras = new HashMap<>();
-        this.paletes = new HashMap<>();
+        this.paletes = PaleteDAO.getInstance();
+        this.prateleiras = PrateleiraDAO.getInstance();
     }
 
-    Armazenamento(Armazenamento a)
+    public Collection<Palete> getPaletes()
     {
-        this.prateleiras = a.getPrateleiras();
-        this.paletes = a.getPaletes();
+        return new ArrayList<>(this.paletes.values());
     }
 
-    public Armazenamento(Map<String , Prateleira> prateleiras, Map<String , Palete> paletes)
+    public Collection<Prateleira> getPrateleiras()
     {
-        this.prateleiras = prateleiras;
-        this.paletes = paletes;
+        return new ArrayList<>(this.prateleiras.values());
     }
 
-    public Map<String, Prateleira> getPrateleiras()
+    public void adicionaPalete(Palete palete)
     {
-        return this.prateleiras;
+        this.paletes.put(palete.getCodPalete(),palete);
     }
 
-    public void setPrateleiras(Map<String, Prateleira> prateleiras)
+    public void adicinaPrateleira(Prateleira prateleira)
     {
-        this.prateleiras = prateleiras;
+        this.prateleiras.put(prateleira.getCodPrateleira(),prateleira);
     }
 
-    public Map<String, Palete> getPaletes()
+    public void removePalete(Palete palete)
     {
-        return this.paletes;
+        this.paletes.remove(palete.getCodPalete());
     }
 
-    public void setPaletes(Map<String, Palete> paletes)
+    public void removePrateleira(Prateleira prateleira)
     {
-        this.paletes = paletes;
+        this.prateleiras.remove(prateleira.getCodPrateleira());
     }
 
-    public Localizacao localizaPalete (String codPalete)
+    public Localizacao localizaPalete (Palete palete)
     {
-        return paletes.get(codPalete).getLocalizacao();
+        return paletes.get(palete.getCodPalete()).getLocalizacao();
     }
 
-    public void atualizaLocalizacaoPalete (String codPalete, Localizacao localizacao)
+    // Não está a funcionar bem.
+    // É tambem preciso uma maneira de fazer com que na prateleira onde estava a palete deixa de a ter
+    public void atualizaLocalizacaoPalete (Palete palete, Localizacao localizacao)
     {
-        paletes.get(codPalete).setLocalizacao(localizacao);
+
+        Palete plt = new Palete(palete.getCodPalete(), palete.getConteudo(), palete.getEntidadeRegisto(), localizacao);
+        paletes.put(plt.getCodPalete(),plt);
+
+        for(Prateleira prateleira : prateleiras.values())
+        {
+            System.out.println(prateleira.getPalete().getCodPalete());
+            if(prateleira.getPalete().compareTo(palete) == 0)
+            {
+                System.out.println("yooooo");
+                Prateleira prlt = new Prateleira(prateleira.getCodPrateleira(), null, prateleira.getLocalizacao());
+                System.out.println("yooooo");
+                prateleiras.put(prlt.getCodPrateleira(),prlt);
+                System.out.println("yooooo");
+            }
+        }
     }
 
     // Mudar no diagrama de Classes List<Palete> --> String
-    public boolean disponivelPaletes(String codpalete)
+    public boolean disponivelPaletes(Palete palete)
     {
         boolean disponivel = true;
 
-        if( paletes.get(codpalete) == null ) disponivel = false;
+        if( paletes.get(palete.getCodPalete()) == null ) disponivel = false;
 
         return disponivel;
     }
@@ -81,9 +100,4 @@ public class Armazenamento implements iArmazenamento{
         return localizacoes;
     }
 
-    @Override
-    public Object clone()
-    {
-        return new Armazenamento(this);
-    }
 }

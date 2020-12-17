@@ -21,11 +21,18 @@ public class Robot {
         this.localizacao = r.getLocalizacao();
     }
 
-    Robot(String c, Boolean b, Localizacao local)
+    public Robot(String c, Boolean b, Localizacao local)
     {
         this.codRobot = c;
         this.disponivel = b;
         this.localizacao = local;
+    }
+
+    public Robot(String c, Boolean b, String local)
+    {
+        this.codRobot = c;
+        this.disponivel = b;
+        this.localizacao = new Localizacao(local);
     }
 
     public String getCodRobot()
