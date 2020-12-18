@@ -1,10 +1,11 @@
 package Data;
 import Business.Localizacao;
+import Business.Transporte.Aresta;
 
 import java.sql.*;
 import java.util.*;
 
-public class MapaDAO implements Map<Localizacao, List<Localizacao>> {
+public class MapaDAO implements Map<Localizacao, List<Aresta>> {
     private static MapaDAO singleton = null;
 
     MapaDAO() {
@@ -14,6 +15,7 @@ public class MapaDAO implements Map<Localizacao, List<Localizacao>> {
             String sql = "CREATE TABLE IF NOT EXISTS mapa (" +
                     "src int(4) NOT NULL," +
                     "des int(4) NOT NULL,"+
+                    "peso decimal (5,2) NOT NULL," +
                     "primary key (src,des))";
             stm.executeUpdate(sql);
         } catch (SQLException e) {
@@ -75,15 +77,15 @@ public class MapaDAO implements Map<Localizacao, List<Localizacao>> {
     }
 
     @Override
-    public List<Localizacao> get(Object key) {
-        List<Localizacao> l = new ArrayList<>();
+    public List<Aresta> get(Object key) {
+        List<Aresta> l = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(DAOConfig.URL + "?user=" + DAOConfig.USERNAME + "&password=" + DAOConfig.PASSWORD
                 + "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
              Statement stm = conn.createStatement();
-             ResultSet rs = stm.executeQuery("SELECT des FROM mapa WHERE src = '" + key.toString() + "'")) {
+             ResultSet rs = stm.executeQuery("SELECT des, peso FROM mapa WHERE src = '" + key.toString() + "'")) {
 
             while (rs.next()){
-                l.add(new Localizacao(rs.getString(1)));
+                l.add(new Aresta((int)key, rs.getInt("des"), rs.getDouble("peso")));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -93,14 +95,15 @@ public class MapaDAO implements Map<Localizacao, List<Localizacao>> {
     }
 
     @Override
-    public List<Localizacao> put(Localizacao key, List<Localizacao> value) {
+    public List<Aresta> put(Localizacao key, List<Aresta> value) {
         try (Connection conn = DriverManager.getConnection(DAOConfig.URL + "?user=" + DAOConfig.USERNAME + "&password=" + DAOConfig.PASSWORD
                 + "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
              Statement stm = conn.createStatement()) {
 
-            for (Localizacao l : value){
-                stm.executeUpdate("INSERT INTO `armazem`.`mapa` values ('" + key.getLocalizacao() + "','" + l.getLocalizacao() + "')"+
-                        "ON DUPLICATE KEY UPDATE src=VALUES(src),  des=VALUES(des)" );
+            for (Aresta a : value){
+                stm.executeUpdate("INSERT INTO `armazem`.`mapa` values ('" + key.getLocalizacao() + "','" + a.getDestino() +
+                        "','" + a.getPeso() +"')"+
+                        "ON DUPLICATE KEY UPDATE src=VALUES(src),  des=VALUES(des), peso=VALUES(peso)");
             }
         }catch (SQLException e) {
             // Database error!
@@ -112,8 +115,8 @@ public class MapaDAO implements Map<Localizacao, List<Localizacao>> {
     }
 
     @Override
-    public List<Localizacao> remove(Object key) {
-        List<Localizacao> ll = this.get(key);
+    public List<Aresta> remove(Object key) {
+        List<Aresta> ll = this.get(key);
         try (Connection conn = DriverManager.getConnection(DAOConfig.URL + "?user=" + DAOConfig.USERNAME + "&password=" + DAOConfig.PASSWORD
                 + "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
              Statement stm = conn.createStatement()) {
@@ -127,10 +130,10 @@ public class MapaDAO implements Map<Localizacao, List<Localizacao>> {
     }
 
     @Override
-    public void putAll(Map<? extends Localizacao, ? extends List<Localizacao>> m) {
+    public void putAll(Map<? extends Localizacao, ? extends List<Aresta>> m) {
         for (Localizacao l : m.keySet()) {
-            List<Localizacao> aux = new ArrayList<>();
-            for (Localizacao ll : m.get(l)) {
+            List<Aresta> aux = new ArrayList<>();
+            for (Aresta ll : m.get(l)) {
                 aux.add(ll);
             }
             this.put(l, aux);
@@ -156,8 +159,8 @@ public class MapaDAO implements Map<Localizacao, List<Localizacao>> {
     }
 
     @Override
-    public Collection<List<Localizacao>> values() {
-        Collection<List<Localizacao>> col = new HashSet<>();
+    public Collection<List<Aresta>> values() {
+        Collection<List<Aresta>> col = new HashSet<>();
         try (Connection conn = DriverManager.getConnection(DAOConfig.URL + "?user=" + DAOConfig.USERNAME + "&password=" + DAOConfig.PASSWORD
                 + "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
              Statement stm = conn.createStatement();
@@ -174,7 +177,7 @@ public class MapaDAO implements Map<Localizacao, List<Localizacao>> {
     }
 
     @Override
-    public Set<Entry<Localizacao, List<Localizacao>>> entrySet() {
+    public Set<Entry<Localizacao, List<Aresta>>> entrySet() {
         return null;
     }
 }

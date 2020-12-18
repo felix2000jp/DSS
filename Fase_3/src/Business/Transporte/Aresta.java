@@ -19,7 +19,7 @@ public class Aresta {
         this.peso = a.getPeso();
     }
 
-    Aresta(int inicio, int destino, double peso)
+    public Aresta(int inicio, int destino, double peso)
     {
         this.inicio = inicio;
         this.destino = destino;
@@ -62,5 +62,12 @@ public class Aresta {
         return new Aresta(this);
     }
 
-
+    @Override
+    public String toString() {
+        return "Aresta{" +
+                "inicio=" + inicio +
+                ", destino=" + destino +
+                ", peso=" + peso +
+                '}';
+    }
 }
