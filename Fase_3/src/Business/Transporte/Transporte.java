@@ -1,7 +1,6 @@
 package Business.Transporte;
 
 import Business.Localizacao;
-import Data.MapaDAO;
 import Data.RobotDAO;
 
 import java.util.HashMap;
@@ -41,7 +40,7 @@ public class Transporte implements ITransporte{
     {
         for(Robot robot : robots.values())
         {
-            if (robot.disponivel.equals(true)) return robot;
+            if (robot.disponivel==1) return robot;
         }
         return null;
     }
@@ -50,7 +49,7 @@ public class Transporte implements ITransporte{
     {
         for(Robot robot : robots.values())
         {
-            if (robot.codRobot.equals(codRobot)) robot.setDisponivel(true);
+            if (robot.codRobot.equals(codRobot)) robot.setDisponivel(1);
         }
     }
 
@@ -58,7 +57,7 @@ public class Transporte implements ITransporte{
     {
         for(Robot robot : robots.values())
         {
-            if (robot.codRobot.equals(codRobot)) robot.setDisponivel(false);
+            if (robot.codRobot.equals(codRobot)) robot.setDisponivel(0);
         }
     }
 
