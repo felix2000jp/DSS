@@ -6,11 +6,11 @@ import Business.Localizacao;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Transporte {
+public class Transporte implements ITransporte{
     Map<String , Robot> robots;   // Key --> codRobot     Value --> Robot
     Map<String , Palete> paletes; // Key --> codPalete     Value --> Palete
 
-    Transporte()
+    public Transporte()
     {
         this.robots=new HashMap<>();
         this.paletes=new HashMap<>();

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4cc36829-8a1a-444c-8328-9dba0d02ca8c" name="Default Changelist" comment="MapaDAO" />
+    <list default="true" id="4cc36829-8a1a-444c-8328-9dba0d02ca8c" name="Default Changelist" comment="MapaDAO">
+      <change beforePath="$PROJECT_DIR$/Fase_3/src/Business/ArmazemFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/Fase_3/src/Business/ArmazemFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fase_3/src/Business/Transporte/Transporte.java" beforeDir="false" afterPath="$PROJECT_DIR$/Fase_3/src/Business/Transporte/Transporte.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,7 +82,7 @@
       <workItem from="1608288094694" duration="286000" />
       <workItem from="1608293072631" duration="114000" />
       <workItem from="1608299530838" duration="1896000" />
-      <workItem from="1608391049668" duration="382000" />
+      <workItem from="1608391049668" duration="894000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <created>1608288319011</created>
@@ -109,7 +112,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608391400991</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Organizacao">
+      <created>1608391583360</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1608391583360</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
