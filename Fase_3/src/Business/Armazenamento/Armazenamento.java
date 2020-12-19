@@ -56,22 +56,24 @@ public class Armazenamento implements IArmazenamento {
 
     // Não está a funcionar bem.
     // É tambem preciso uma maneira de fazer com que na prateleira onde estava a palete deixa de a ter
-    public void atualizaLocalizacaoPalete (Palete palete, Localizacao novaLocalizacao)
+    public void atualizaLocalizacaoPalete (Palete palete, Localizacao localizacao)
     {
 
-        Palete novaPalete = new Palete(palete.getCodPalete(),palete.getConteudo(),palete.getEntidadeRegisto(),novaLocalizacao, palete.getNecessidadeTransporte());
-        paletes.put(novaPalete.getCodPalete(),novaPalete);
-        Prateleira newPrateleira=null, oldPrateleira=null;
+        Palete plt = new Palete(palete.getCodPalete(), palete.getConteudo(), palete.getEntidadeRegisto(), localizacao,palete.getNecessidadeTransporte());
+        paletes.put(plt.getCodPalete(),plt);
 
         for(Prateleira prateleira : prateleiras.values())
-        {   if (prateleira.getPalete().compareTo(palete)==0) oldPrateleira = prateleira;
-            if (prateleira.getLocalizacao().compareTo(novaLocalizacao)==0) newPrateleira = prateleira;
+        {
+            System.out.println(prateleira.getPalete().getCodPalete());
+            if(prateleira.getPalete().compareTo(palete) == 0)
+            {
+                System.out.println("yooooo");
+                Prateleira prlt = new Prateleira(prateleira.getCodPrateleira(), null, prateleira.getLocalizacao());
+                System.out.println("yooooo");
+                prateleiras.put(prlt.getCodPrateleira(),prlt);
+                System.out.println("yooooo");
+            }
         }
-
-        oldPrateleira.setPalete(null);
-        prateleiras.put(oldPrateleira.getCodPrateleira(), oldPrateleira);
-        newPrateleira.setPalete(novaPalete);
-        prateleiras.put(newPrateleira.getCodPrateleira(),newPrateleira);
     }
 
     // Mudar no diagrama de Classes List<Palete> --> String

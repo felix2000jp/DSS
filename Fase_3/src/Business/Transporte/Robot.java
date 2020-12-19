@@ -35,6 +35,7 @@ public class Robot {
         this.localizacao = new Localizacao(local);
     }
 
+
     public String getCodRobot()
     {
         return codRobot;

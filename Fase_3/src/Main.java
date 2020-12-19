@@ -1,13 +1,13 @@
-import Business.Armazenamento.Prateleira;
-import Business.Localizacao;
-import Business.Transporte.Aresta;
-import Data.DAOConfig;
-import Data.MapaDAO;
+import Data.PaleteDAO;
 import Data.PrateleiraDAO;
+import Data.RobotDAO;
 
 public class Main {
 
     public static void main(String[] args) {
+        RobotDAO.getInstance();
+        PaleteDAO.getInstance();
+        PrateleiraDAO.getInstance();
     }
 
 }

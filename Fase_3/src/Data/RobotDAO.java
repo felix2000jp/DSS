@@ -25,9 +25,9 @@ public class RobotDAO implements Map<String, Robot> {
             sql = "CREATE TABLE IF NOT EXISTS localizacoes (Localizacao varchar(45) NOT NULL PRIMARY KEY)";
             stm.execute(sql);
             sql = "CREATE TABLE IF NOT EXISTS robots (" +
-                  "CodRobot varchar(20) NOT NULL PRIMARY KEY, " +
-                  "Disponibilidade varchar(45) DEFAULT NULL, " +
-                  "Localizacao varchar(45), foreign key(Localizacao) references localizacoes(Localizacao))";
+                    "CodRobot varchar(20) NOT NULL PRIMARY KEY, " +
+                    "Disponibilidade varchar(45) DEFAULT NULL, " +
+                    "Localizacao varchar(45), foreign key(Localizacao) references localizacoes(Localizacao))";
             stm.execute(sql);
         } catch (SQLException e) {
             // Erro a criar tabela...
@@ -36,10 +36,8 @@ public class RobotDAO implements Map<String, Robot> {
         }
     }
 
-    public static RobotDAO getInstance()
-    {
-        if (RobotDAO.singleton == null)
-        {
+    public static RobotDAO getInstance() {
+        if (RobotDAO.singleton == null) {
             RobotDAO.singleton = new RobotDAO();
         }
         return RobotDAO.singleton;
@@ -57,10 +55,10 @@ public class RobotDAO implements Map<String, Robot> {
                         Statement stm = conn.createStatement()
                 ) {
             stm.execute("INSERT INTO localizacoes (Localizacao) VALUES ('" + local.getLocalizacao() + "') " +
-                            "ON DUPLICATE KEY UPDATE Localizacao=VALUES(Localizacao)");
+                    "ON DUPLICATE KEY UPDATE Localizacao=VALUES(Localizacao)");
             stm.execute("INSERT INTO robots (CodRobot, Disponibilidade, Localizacao) " +
-                            "VALUES ('" + p.getCodRobot() + "', '" + p.getDisponivel() + "', '" + local.getLocalizacao() + "')" +
-                            "ON DUPLICATE KEY UPDATE Disponibilidade=VALUES(Disponibilidade), Localizacao=VALUES(Localizacao)");
+                    "VALUES ('" + p.getCodRobot() + "', '" + p.getDisponivel() + "', '" + local.getLocalizacao() + "')" +
+                    "ON DUPLICATE KEY UPDATE Disponibilidade=VALUES(Disponibilidade), Localizacao=VALUES(Localizacao)");
         } catch (SQLException e) {
             // Database error!
             e.printStackTrace();
@@ -133,8 +131,8 @@ public class RobotDAO implements Map<String, Robot> {
                 ) {
             if (rs.next()) {
                 p = new Robot(rs.getString("CodRobot"),
-                              rs.getInt("Disponibilidade"),
-                              rs.getString("Localizacao"));
+                        rs.getInt("Disponibilidade"),
+                        rs.getString("Localizacao"));
             }
         } catch (SQLException e) {
             // Database error!
@@ -204,8 +202,7 @@ public class RobotDAO implements Map<String, Robot> {
             while (rs.next()) {
                 col.add(this.get(rs.getString("CodRobot")));
             }
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             throw new NullPointerException(e.getMessage());
         }
@@ -226,6 +223,5 @@ public class RobotDAO implements Map<String, Robot> {
     public boolean containsValue(Object value) {
         throw new NullPointerException("Not Implemented!");
     }
-
 
 }

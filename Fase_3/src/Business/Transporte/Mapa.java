@@ -1,11 +1,11 @@
 package Business.Transporte;
 
 import Business.Localizacao;
+import Data.MapaDAO;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class Mapa
 {
@@ -13,7 +13,7 @@ public class Mapa
 
     Mapa()
     {
-        this.mapa = new TreeMap<>();
+        this.mapa = MapaDAO.getInstance();
     }
 
     Mapa(Mapa a)

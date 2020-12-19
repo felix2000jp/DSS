@@ -1,4 +1,5 @@
 package Data;
+
 import Business.Localizacao;
 import Business.Transporte.Aresta;
 
