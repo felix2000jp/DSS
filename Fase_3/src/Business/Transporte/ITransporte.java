@@ -7,22 +7,12 @@ public interface ITransporte
     //Retorna o primeiro robot que encontrar que está disponível
     Robot robotDisponivel();
 
-    //Dado o código de uma palete, faz com que esta tenha necessidade de transporte
-    void addNecessidadeTransporte (String codPalete);
+    //Sistema comunica ordem de transporte
+    void comunicaTransporte();
 
-    //Dado o código de uma palete, faz com que esta não tenha necessidade de transporte
-    void removeNecessidadeTransporte (String codPalete);
+    // Notificar recolha de paletes (Actor: Robot)
+    void notificarRecolha(String codRobot);
 
-    //Dado o codigo do robot e uma localização, atualiza a localização do respetivo robot
-    void atualizaLocalizacaoRobot(String codRobot, Localizacao localizacao);
-
-    // Dado o código de um robot, atualiza este para o estado de disponivel
-    void setRobotDisponivel(String codRobot);
-
-    // Dado o código de um robot, atualiza este para o estado de indisponivel
-    void setRobotIndisponivel(String codRobot);
-
-    //Dado o código de uma palete, retorna a localização do seu destino
-    Localizacao destinoPalete (String codPalete);
-
+    // Notificar entrega de paletes (Actor: Robot)
+    void notificarEntrega(String codRobot);
 }

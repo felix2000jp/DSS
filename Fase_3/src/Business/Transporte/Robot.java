@@ -4,13 +4,13 @@ import Business.Localizacao;
 
 public class Robot {
     String codRobot;
-    Boolean disponivel;
+    int disponivel;
     Localizacao localizacao;
 
     Robot()
     {
         this.codRobot = "";
-        this.disponivel = true;
+        this.disponivel = 1;
         this.localizacao = new Localizacao();
     }
 
@@ -21,14 +21,14 @@ public class Robot {
         this.localizacao = r.getLocalizacao();
     }
 
-    public Robot(String c, Boolean b, Localizacao local)
+    public Robot(String c, int b, Localizacao local)
     {
         this.codRobot = c;
         this.disponivel = b;
         this.localizacao = local;
     }
 
-    public Robot(String c, Boolean b, String local)
+    public Robot(String c, int b, String local)
     {
         this.codRobot = c;
         this.disponivel = b;
@@ -55,12 +55,12 @@ public class Robot {
         this.localizacao = localizacao;
     }
 
-    public Boolean getDisponivel()
+    public int getDisponivel()
     {
         return disponivel;
     }
 
-    public void setDisponivel(Boolean disponivel)
+    public void setDisponivel(int disponivel)
     {
         this.disponivel = disponivel;
     }

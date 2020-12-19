@@ -96,4 +96,26 @@ public class Armazenamento implements IArmazenamento {
         return localizacoes;
     }
 
+    /*
+        public Localizacao destinoPalete (String codPalete)
+    {
+        Localizacao l = new Localizacao();
+        for(Palete palete : paletes.values())
+        {
+            if (palete.getCodPalete().equals(codPalete))
+            {
+                if (palete.getLocalizacao().equals(0))
+                {
+                    l.setLocalizacao(2);
+                } //funçao primeira disponivel
+                if (palete.getLocalizacao().getLocalizacao()>0 && palete.getLocalizacao().getLocalizacao()<11)
+                {
+                    l.setLocalizacao(11);
+                }
+            }
+        }
+        return l;
+    }
+     */
+
 }

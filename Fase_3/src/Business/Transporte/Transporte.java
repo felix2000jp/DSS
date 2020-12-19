@@ -1,96 +1,79 @@
 package Business.Transporte;
 
-import Business.Armazenamento.Palete;
 import Business.Localizacao;
+import Data.RobotDAO;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Transporte implements ITransporte{
     Map<String , Robot> robots;   // Key --> codRobot     Value --> Robot
-    Map<String , Palete> paletes; // Key --> codPalete     Value --> Palete
+    Mapa mapa;
 
-    public Transporte()
-    {
-        this.robots=new HashMap<>();
-        this.paletes=new HashMap<>();
+    public Transporte() {
+        this.robots = RobotDAO.getInstance();
+        //this.mapa = MapaDAO.getInstance();
     }
 
     Transporte(Transporte t)
     {
         this.robots = t.getRobots();
-        this.paletes = t.getPaletes();
     }
 
-    public Map<String, Palete> getPaletes()
-    {
-        return paletes;
-    }
-
-    public void setPaletes(Map<String, Palete> paletes)
-    {
-        this.paletes = paletes;
-    }
-
-    public Transporte(Map<String , Robot> rs, Map<String , Palete> ps)
-    {
+    public Transporte(Map<String , Robot> rs) {
         this.robots = rs;
-        this.paletes = ps;
     }
 
     public Map<String, Robot> getRobots()
     {
-        return robots;
+        return new HashMap<>(this.robots);
     }
 
     public void setRobots(Map<String, Robot> robots)
     {
-        this.robots = robots;
+        this.robots = new HashMap<>(robots);
     }
 
+
+    // Vai ao map de robots e devolve o primeiro disponivel
     public Robot robotDisponivel()
     {
         for(Robot robot : robots.values())
         {
-            if (robot.disponivel.equals(true)) return robot;
+            if (robot.disponivel==1) return robot;
         }
         return null;
     }
 
-    public Localizacao destinoPalete (String codPalete)
+    public void setRobotDisponivel(String codRobot)
     {
-        Localizacao l = new Localizacao();
-        for(Palete palete : paletes.values())
+        for(Robot robot : robots.values())
         {
-            if (palete.getCodPalete().equals(codPalete))
-            {
-                if (palete.getLocalizacao().equals(0))
-                {
-                    l.setLocalizacao(2);
-                } //funçao primeira disponivel
-                if (palete.getLocalizacao().getLocalizacao()>0 && palete.getLocalizacao().getLocalizacao()<11)
-                {
-                    l.setLocalizacao(11);
-                }
-            }
-        }
-        return l;
-    }
-
-    public void addNecessidadeTransporte (String codPalete)
-    {
-        for(Palete palete : paletes.values())
-        {
-            if (palete.getCodPalete().equals(codPalete)) palete.setNecessidadeTransporte(1);
+            if (robot.codRobot.equals(codRobot)) robot.setDisponivel(1);
         }
     }
 
-    public void removeNecessidadeTransporte (String codPalete)
+    public void setRobotIndisponivel(String codRobot)
     {
-        for(Palete palete : paletes.values())
+        for(Robot robot : robots.values())
         {
-            if (palete.getCodPalete().equals(codPalete)) palete.setNecessidadeTransporte(0);
+            if (robot.codRobot.equals(codRobot)) robot.setDisponivel(0);
         }
+    }
+
+    @Override
+    public void comunicaTransporte() {
+
+    }
+
+    @Override
+    public void notificarRecolha(String codRobot) {
+
+    }
+
+    @Override
+    public void notificarEntrega(String codRobot) {
+
     }
 
     public void atualizaLocalizacaoRobot(String codRobot, Localizacao localizacao)
@@ -100,24 +83,6 @@ public class Transporte implements ITransporte{
             if (robot.codRobot.equals(codRobot)) robot.setLocalizacao(localizacao);
         }
     }
-
-    public void setRobotDisponivel(String codRobot)
-    {
-        for(Robot robot : robots.values())
-        {
-            if (robot.codRobot.equals(codRobot)) robot.setDisponivel(true);
-        }
-    }
-
-    public void setRobotIndisponivel(String codRobot)
-    {
-        for(Robot robot : robots.values())
-        {
-            if (robot.codRobot.equals(codRobot)) robot.setDisponivel(false);
-        }
-    }
-
-
 
     @Override
     protected Object clone()  {
