@@ -1,16 +1,8 @@
-package Ui;
-
-import Business.Armazem.Armazenamento;
-import Business.Localizacao;
-import Business.Palete;
-import Business.Prateleira;
 import Business.Transporte.Aresta;
 import Data.MapaDAO;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Main {
 
@@ -26,4 +18,3 @@ public class Main {
 
 
 }
-
