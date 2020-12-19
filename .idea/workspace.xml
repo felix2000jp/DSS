@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4cc36829-8a1a-444c-8328-9dba0d02ca8c" name="Default Changelist" comment="Rafa">
-      <change beforePath="$PROJECT_DIR$/out/production/dss/Business/Armazenamento/Palete.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dss/Business/Armazenamento/Palete.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dss/Data/PaleteDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dss/Data/PaleteDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fase_3/src/Business/Armazenamento/Armazenamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/Fase_3/src/Business/Armazenamento/Armazenamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fase_3/src/Business/Localizacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/Fase_3/src/Business/Localizacao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

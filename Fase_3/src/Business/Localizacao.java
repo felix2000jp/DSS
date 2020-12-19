@@ -41,4 +41,7 @@ public class Localizacao {
     public String toString() {
         return "localizacao = " + localizacao;
     }
+
+    public int compareTo(Localizacao o) {
+        return this.localizacao - o.getLocalizacao();}
 }
