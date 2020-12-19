@@ -88,7 +88,7 @@ public class Palete implements Comparable<Palete>{
         return this.localizacao;
     }
 
-    public void setLocalizacao(Localizacao localiacao)
+    public void setLocalizacao(Localizacao localizacao)
     {
         this.localizacao = localizacao;
     }

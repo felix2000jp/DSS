@@ -57,10 +57,10 @@ public class PaleteDAO implements Map<String, Palete> {
                         Statement stm = conn.createStatement()
                 ) {
             stm.execute("INSERT INTO localizacoes (Localizacao) VALUES ('" + local.getLocalizacao() + "') " +
-                    "ON DUPLICATE KEY UPDATE Localizacao=VALUES(Localizacao)");
+                            "ON DUPLICATE KEY UPDATE Localizacao=VALUES(Localizacao)");
             stm.execute("INSERT INTO paletes (CodPalete, Conteudo, EntidadeRegisto, Localizacao, NecessidadeTransporte) " +
                     "VALUES ('" + p.getCodPalete() + "', '" + p.getConteudo() + "', '" + p.getEntidadeRegisto() + "', '" +
-                    local.getLocalizacao() + "', " + p.getNecessidadeTransporte() + "')" +
+                    local.getLocalizacao() + "', '" + p.getNecessidadeTransporte() + "')" +
                     "ON DUPLICATE KEY UPDATE Conteudo=VALUES(Conteudo), EntidadeRegisto=VALUES(EntidadeRegisto), " +
                     "Localizacao=VALUES(Localizacao), NecessidadeTransporte=VALUES(NecessidadeTransporte)");
         } catch (SQLException e) {

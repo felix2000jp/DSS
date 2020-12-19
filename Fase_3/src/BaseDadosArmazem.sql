@@ -8,6 +8,10 @@ CREATE USER  'gestor'@'localhost'
 GRANT ALL ON armazem.* TO 'gestor'@'localhost';
 DROP TABLE paletes;
 DROP TABLE prateleiras;
+DROP TABLE localizacoes;
+DROP TABLE robots;
 
 select * from paletes;
 select * from prateleiras;
+select * from localizacoes;
+select * from robots;

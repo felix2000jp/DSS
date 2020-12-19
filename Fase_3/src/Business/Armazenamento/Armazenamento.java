@@ -17,6 +17,29 @@ public class Armazenamento implements IArmazenamento {
     {
         this.paletes = PaleteDAO.getInstance();
         this.prateleiras = PrateleiraDAO.getInstance();
+
+        Prateleira prateleiraA = new Prateleira("A", null, 1);
+        Prateleira prateleiraB = new Prateleira("B", null, 2);
+        Prateleira prateleiraC = new Prateleira("C", null, 3);
+        Prateleira prateleiraD = new Prateleira("D", null, 4);
+        Prateleira prateleiraE = new Prateleira("E", null, 5);
+        Prateleira prateleiraF = new Prateleira("F", null, 6);
+        Prateleira prateleiraG = new Prateleira("G", null, 7);
+        Prateleira prateleiraH = new Prateleira("H", null, 8);
+        Prateleira prateleiraI = new Prateleira("I", null, 9);
+        Prateleira prateleiraJ = new Prateleira("J", null, 10);
+
+
+        this.prateleiras.put(prateleiraA.getCodPrateleira(), prateleiraA);
+        this.prateleiras.put(prateleiraB.getCodPrateleira(), prateleiraB);
+        this.prateleiras.put(prateleiraC.getCodPrateleira(), prateleiraC);
+        this.prateleiras.put(prateleiraD.getCodPrateleira(), prateleiraD);
+        this.prateleiras.put(prateleiraE.getCodPrateleira(), prateleiraE);
+        this.prateleiras.put(prateleiraF.getCodPrateleira(), prateleiraF);
+        this.prateleiras.put(prateleiraG.getCodPrateleira(), prateleiraG);
+        this.prateleiras.put(prateleiraH.getCodPrateleira(), prateleiraH);
+        this.prateleiras.put(prateleiraI.getCodPrateleira(), prateleiraI);
+        this.prateleiras.put(prateleiraJ.getCodPrateleira(), prateleiraJ);
     }
 
     public Collection<Palete> getPaletes()
@@ -58,20 +81,16 @@ public class Armazenamento implements IArmazenamento {
     // É tambem preciso uma maneira de fazer com que na prateleira onde estava a palete deixa de a ter
     public void atualizaLocalizacaoPalete (Palete palete, Localizacao localizacao)
     {
+        paletes.remove(palete.getCodPalete());
+        palete.setLocalizacao(localizacao);
+        paletes.put(palete.getCodPalete(),palete);
 
-        Palete plt = new Palete(palete.getCodPalete(), palete.getConteudo(), palete.getEntidadeRegisto(), localizacao,palete.getNecessidadeTransporte());
-        paletes.put(plt.getCodPalete(),plt);
-
-        for(Prateleira prateleira : prateleiras.values())
+        for(Prateleira prateleira : this.prateleiras.values())
         {
-            System.out.println(prateleira.getPalete().getCodPalete());
-            if(prateleira.getPalete().compareTo(palete) == 0)
+            if( prateleira.getLocalizacao().compareTo(localizacao) > 0 )
             {
-                System.out.println("yooooo");
-                Prateleira prlt = new Prateleira(prateleira.getCodPrateleira(), null, prateleira.getLocalizacao());
-                System.out.println("yooooo");
-                prateleiras.put(prlt.getCodPrateleira(),prlt);
-                System.out.println("yooooo");
+                prateleira.setPalete(palete);
+                prateleiras.put(prateleira.getCodPrateleira(), prateleira);
             }
         }
     }

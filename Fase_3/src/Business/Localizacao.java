@@ -1,6 +1,8 @@
 package Business;
 
-public class Localizacao {
+import Business.Armazenamento.Palete;
+
+public class Localizacao implements Comparable<Localizacao>{
     int localizacao;
 
     public Localizacao()
@@ -35,6 +37,14 @@ public class Localizacao {
     public Object clone()
     {
         return new Localizacao(this);
+    }
+
+    @Override
+    public int compareTo(Localizacao o)
+    {
+        int verdade = 0;
+        if( this.localizacao == o.getLocalizacao() ) verdade = 1;
+        return verdade;
     }
 
     @Override
