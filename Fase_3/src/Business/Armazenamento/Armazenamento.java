@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Armazenamento implements iArmazenamento{
+public class Armazenamento implements IArmazenamento {
     Map<String , Palete> paletes;         // Key --> codPalete         Value --> Palete
     Map<String , Prateleira> prateleiras; // Key --> codPrateleira     Value --> Prateleira
 

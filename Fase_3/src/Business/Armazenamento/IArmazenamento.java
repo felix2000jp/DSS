@@ -4,7 +4,7 @@ import Business.Localizacao;
 
 import java.util.Map;
 
-public interface iArmazenamento
+public interface IArmazenamento
 {
     // Dado um codigo de Palete dá a localização.
     Localizacao localizaPalete (Palete palete);

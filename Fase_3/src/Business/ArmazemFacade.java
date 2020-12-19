@@ -1,5 +1,7 @@
 package Business;
 
-public class ArmazemFacade {
+public class ArmazemFacade implements IArmazemFacade{
+
+
 
 }

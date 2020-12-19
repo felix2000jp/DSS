@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4cc36829-8a1a-444c-8328-9dba0d02ca8c" name="Default Changelist" comment="MapaDAO">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fase_3/src/Business/Transporte/Aresta.java" beforeDir="false" afterPath="$PROJECT_DIR$/Fase_3/src/Business/Transporte/Aresta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fase_3/src/Data/MapaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Fase_3/src/Data/MapaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fase_3/src/Ui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Fase_3/src/Ui/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dss.iml" beforeDir="false" afterPath="$PROJECT_DIR$/dss.iml" afterDir="false" />
-    </list>
+    <list default="true" id="4cc36829-8a1a-444c-8328-9dba0d02ca8c" name="Default Changelist" comment="MapaDAO" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +11,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -85,6 +79,7 @@
       <workItem from="1608288094694" duration="286000" />
       <workItem from="1608293072631" duration="114000" />
       <workItem from="1608299530838" duration="1896000" />
+      <workItem from="1608391049668" duration="382000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <created>1608288319011</created>
@@ -100,7 +95,21 @@
       <option name="project" value="LOCAL" />
       <updated>1608293162089</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Organizacao">
+      <created>1608391302377</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1608391302377</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Organizacao">
+      <created>1608391400991</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1608391400991</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -121,6 +130,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="." />
     <MESSAGE value="MapaDAO" />
-    <option name="LAST_COMMIT_MESSAGE" value="MapaDAO" />
+    <MESSAGE value="Organizacao" />
+    <option name="LAST_COMMIT_MESSAGE" value="Organizacao" />
   </component>
 </project>

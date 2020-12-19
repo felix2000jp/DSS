@@ -2,7 +2,7 @@ package Business.Transporte;
 
 import Business.Localizacao;
 
-public interface iTransporte
+public interface ITransporte
 {
     //Retorna o primeiro robot que encontrar que está disponível
     Robot robotDisponivel();
