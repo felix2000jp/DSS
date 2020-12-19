@@ -1,7 +1,5 @@
 package Data;
 
-import Business.Localizacao;
-import Business.Palete;
 import Business.Transporte.Robot;
 
 import java.sql.*;

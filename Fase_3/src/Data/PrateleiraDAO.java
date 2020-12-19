@@ -1,8 +1,8 @@
 package Data;
 
 import Business.Localizacao;
-import Business.Palete;
-import Business.Prateleira;
+import Business.Armazenamento.Palete;
+import Business.Armazenamento.Prateleira;
 
 import java.sql.*;
 import java.util.Collection;

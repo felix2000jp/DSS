@@ -1,7 +1,7 @@
 package Business.Transporte;
 
+import Business.Armazenamento.Palete;
 import Business.Localizacao;
-import Business.Palete;
 
 import java.util.HashMap;
 import java.util.Map;

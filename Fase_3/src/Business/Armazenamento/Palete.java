@@ -1,4 +1,6 @@
-package Business;
+package Business.Armazenamento;
+
+import Business.Localizacao;
 
 public class Palete implements Comparable<Palete>{
     private String codPalete;

@@ -1,8 +1,6 @@
-package Business.Armazem;
+package Business.Armazenamento;
 
 import Business.Localizacao;
-import Business.Palete;
-import Business.Prateleira;
 import Data.PaleteDAO;
 import Data.PrateleiraDAO;
 

@@ -1,7 +1,6 @@
-package Business.Armazem;
+package Business.Armazenamento;
 
 import Business.Localizacao;
-import Business.Palete;
 
 import java.util.Map;
 
