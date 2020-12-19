@@ -63,12 +63,21 @@ public class PrateleiraDAO implements Map<String, Prateleira>
             Statement stm = conn.createStatement()
         )
         {
+
             stm.execute("INSERT INTO localizacoes (Localizacao) VALUES ('" + local.getLocalizacao() + "') " +
                             "ON DUPLICATE KEY UPDATE Localizacao=VALUES(Localizacao)");
-            stm.execute("INSERT INTO prateleiras (CodPrateleira, Palete, Localizacao) " +
-                             "VALUES('" + p.getCodPrateleira() + "','" + palete.getCodPalete() + "','" + local.getLocalizacao() + "') "+
-                             "ON DUPLICATE KEY UPDATE Palete=VALUES(Palete)");
 
+            if(palete == null)
+            {
+                stm.execute("INSERT INTO prateleiras (CodPrateleira, Palete, Localizacao) " +
+                                "VALUES('" + p.getCodPrateleira() + "'," + null + ",'" + local.getLocalizacao() + "') "+
+                                "ON DUPLICATE KEY UPDATE Palete=VALUES(Palete)");
+            }
+            else {
+                stm.execute("INSERT INTO prateleiras (CodPrateleira, Palete, Localizacao) " +
+                                "VALUES('" + p.getCodPrateleira() + "','" + palete.getCodPalete() + "','" + local.getLocalizacao() + "') " +
+                                "ON DUPLICATE KEY UPDATE Palete=VALUES(Palete)");
+            }
         }
         catch (Exception e)
         {
