@@ -64,14 +64,14 @@ public class Transporte implements ITransporte{
         {
             if (palete.getCodPalete().equals(codPalete))
             {
-               if (palete.getLocalizacao().equals(0))
-               {
-                   l.setLocalizacao(2);
-               } //funçao primeira disponivel
-               if (palete.getLocalizacao().getLocalizacao()>0 && palete.getLocalizacao().getLocalizacao()<11)
-               {
-                   l.setLocalizacao(11);
-               }
+                if (palete.getLocalizacao().equals(0))
+                {
+                    l.setLocalizacao(2);
+                } //funçao primeira disponivel
+                if (palete.getLocalizacao().getLocalizacao()>0 && palete.getLocalizacao().getLocalizacao()<11)
+                {
+                    l.setLocalizacao(11);
+                }
             }
         }
         return l;
@@ -81,7 +81,7 @@ public class Transporte implements ITransporte{
     {
         for(Palete palete : paletes.values())
         {
-           // if (palete.getCodPalete().equals(codPalete)) palete.setNecessidadeTransporte(true);
+            if (palete.getCodPalete().equals(codPalete)) palete.setNecessidadeTransporte(1);
         }
     }
 
@@ -89,7 +89,7 @@ public class Transporte implements ITransporte{
     {
         for(Palete palete : paletes.values())
         {
-            //if (palete.getCodPalete().equals(codPalete)) palete.setNecessidadeTransporte(false);
+            if (palete.getCodPalete().equals(codPalete)) palete.setNecessidadeTransporte(0);
         }
     }
 

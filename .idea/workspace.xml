@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4cc36829-8a1a-444c-8328-9dba0d02ca8c" name="Default Changelist" comment="MapaDAO">
-      <change beforePath="$PROJECT_DIR$/Fase_3/src/Business/ArmazemFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/Fase_3/src/Business/ArmazemFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fase_3/src/Business/Transporte/Transporte.java" beforeDir="false" afterPath="$PROJECT_DIR$/Fase_3/src/Business/Transporte/Transporte.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fase_3/src/Data/PrateleiraDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Fase_3/src/Data/PrateleiraDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fase_3/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Fase_3/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dss/Business/Localizacao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dss/Business/Localizacao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dss/Business/Transporte/iTransporte.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dss/Business/Transporte/iTransporte.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dss/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dss/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +42,14 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main (1)">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="dss" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Ui.Main" />
       <module name="dss" />
@@ -52,19 +63,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -82,7 +83,11 @@
       <workItem from="1608288094694" duration="286000" />
       <workItem from="1608293072631" duration="114000" />
       <workItem from="1608299530838" duration="1896000" />
-      <workItem from="1608391049668" duration="894000" />
+      <workItem from="1608391049668" duration="1177000" />
+      <workItem from="1608393823385" duration="36000" />
+      <workItem from="1608394202525" duration="305000" />
+      <workItem from="1608395242338" duration="494000" />
+      <workItem from="1608396397148" duration="22000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <created>1608288319011</created>
@@ -119,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608391583360</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Organizacao">
+      <created>1608392220698</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1608392220698</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

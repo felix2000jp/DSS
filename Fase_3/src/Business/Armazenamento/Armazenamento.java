@@ -59,7 +59,7 @@ public class Armazenamento implements IArmazenamento {
     public void atualizaLocalizacaoPalete (Palete palete, Localizacao localizacao)
     {
 
-        Palete plt = new Palete(palete.getCodPalete(), palete.getConteudo(), palete.getEntidadeRegisto(), localizacao);
+        Palete plt = new Palete(palete.getCodPalete(), palete.getConteudo(), palete.getEntidadeRegisto(), localizacao,palete.getNecessidadeTransporte());
         paletes.put(plt.getCodPalete(),plt);
 
         for(Prateleira prateleira : prateleiras.values())

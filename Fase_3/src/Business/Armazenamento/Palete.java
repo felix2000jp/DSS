@@ -7,6 +7,7 @@ public class Palete implements Comparable<Palete>{
     private String conteudo;
     private String entidadeRegisto;
     private Localizacao localizacao;
+    private Integer necessidadeTransporte;
 
     Palete()
     {
@@ -14,6 +15,7 @@ public class Palete implements Comparable<Palete>{
         this.conteudo = "";
         this.entidadeRegisto = "";
         this.localizacao = new Localizacao();
+        this.necessidadeTransporte = 0;
     }
 
     public Palete(Palete a)
@@ -22,29 +24,33 @@ public class Palete implements Comparable<Palete>{
         this.conteudo = a.getConteudo();
         this.entidadeRegisto = a.getEntidadeRegisto();
         this.localizacao = a.getLocalizacao();
+        this.necessidadeTransporte=a.getNecessidadeTransporte();
     }
 
-    public Palete(String codPalete, String conteudo, String entidadeRegisto, String localizacao)
+    public Palete(String codPalete, String conteudo, String entidadeRegisto, String localizacao, String nt)
     {
         this.codPalete = codPalete;
         this.conteudo = conteudo;
         this.entidadeRegisto = entidadeRegisto;
         this.localizacao = new Localizacao(localizacao);
+        this.necessidadeTransporte = Integer.parseInt(nt);
     }
 
-    public Palete(String codPalete, String conteudo, String entidadeRegisto, int localizacao)
+    public Palete(String codPalete, String conteudo, String entidadeRegisto, int localizacao,Integer nt)
     {
         this.codPalete = codPalete;
         this.conteudo = conteudo;
         this.entidadeRegisto = entidadeRegisto;
         this.localizacao = new Localizacao(localizacao);
+        this.necessidadeTransporte = nt;
     }
 
-    public Palete(String codPalete, String conteudo, String entidadeRegisto, Localizacao localizacao) {
+    public Palete(String codPalete, String conteudo, String entidadeRegisto, Localizacao localizacao,Integer nt) {
         this.codPalete = codPalete;
         this.conteudo = conteudo;
         this.entidadeRegisto = entidadeRegisto;
         this.localizacao = localizacao;
+        this.necessidadeTransporte = nt;
     }
 
     public String getCodPalete()
@@ -87,6 +93,16 @@ public class Palete implements Comparable<Palete>{
         this.localizacao = localizacao;
     }
 
+    public Integer getNecessidadeTransporte()
+    {
+        return this.necessidadeTransporte;
+    }
+
+    public void setNecessidadeTransporte(Integer i)
+    {
+        this.necessidadeTransporte = i;
+    }
+
     @Override
     public Object clone()
     {
@@ -104,7 +120,7 @@ public class Palete implements Comparable<Palete>{
                 "codPalete='" + codPalete + '\'' +
                 ", conteudo='" + conteudo + '\'' +
                 ", entidadeRegisto='" + entidadeRegisto + '\'' +
-                ", " + localizacao +
+                ", " + localizacao +'\''+ "Necessidade Transporte = " + necessidadeTransporte +
                 '}';
     }
 }
