@@ -1,5 +1,7 @@
 package Business.Transporte;
 
+import Business.Localizacao;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -7,7 +9,7 @@ import java.util.TreeMap;
 
 public class Mapa
 {
-    Map<Integer , List<Aresta>> mapa;
+    Map<Localizacao, List<Aresta>> mapa;
 
     Mapa()
     {
@@ -19,16 +21,16 @@ public class Mapa
     this.mapa = a.getMapa();
     }
 
-    public Mapa(Map<Integer, List<Aresta>> mapa)
+    public Mapa(Map<Localizacao, List<Aresta>> mapa)
     {
         this.mapa = mapa;
     }
 
-    public Map<Integer, List<Aresta>> getMapa() {
+    public Map<Localizacao, List<Aresta>> getMapa() {
         return mapa;
     }
 
-    public void setMapa(Map<Integer, List<Aresta>> mapa) {
+    public void setMapa(Map<Localizacao, List<Aresta>> mapa) {
         this.mapa = mapa;
     }
 
@@ -108,23 +110,23 @@ public class Mapa
         saida.add(s_p10);
 
         this.mapa.clear();
-        this.mapa.put(0, entrada);
-        this.mapa.put(1, prateleira1);
-        this.mapa.put(2, prateleira2);
-        this.mapa.put(3, prateleira3);
-        this.mapa.put(4, prateleira4);
-        this.mapa.put(5, prateleira5);
-        this.mapa.put(6, prateleira6);
-        this.mapa.put(7, prateleira7);
-        this.mapa.put(8, prateleira8);
-        this.mapa.put(9, prateleira9);
-        this.mapa.put(10, prateleira10);
-        this.mapa.put(11, saida);
+        this.mapa.put(new Localizacao(0), entrada);
+        this.mapa.put(new Localizacao(1), prateleira1);
+        this.mapa.put(new Localizacao(2), prateleira2);
+        this.mapa.put(new Localizacao(3), prateleira3);
+        this.mapa.put(new Localizacao(4), prateleira4);
+        this.mapa.put(new Localizacao(5), prateleira5);
+        this.mapa.put(new Localizacao(6), prateleira6);
+        this.mapa.put(new Localizacao(7), prateleira7);
+        this.mapa.put(new Localizacao(8), prateleira8);
+        this.mapa.put(new Localizacao(9), prateleira9);
+        this.mapa.put(new Localizacao(10), prateleira10);
+        this.mapa.put(new Localizacao(11), saida);
     }
 
-    public List<Integer> calculaRota(int lRobot, int lPalete, int destino)
+    public List<Localizacao> calculaRota(int lRobot, int lPalete, int destino)
     {
-        List<Integer> rota = new ArrayList<>();
+        List<Localizacao> rota = new ArrayList<>();
 
 
         return rota;

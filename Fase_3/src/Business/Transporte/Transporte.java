@@ -1,16 +1,16 @@
 package Business.Transporte;
 
+import Business.Armazenamento.Palete;
 import Business.Localizacao;
-import Business.Palete;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Transporte {
+public class Transporte implements ITransporte{
     Map<String , Robot> robots;   // Key --> codRobot     Value --> Robot
     Map<String , Palete> paletes; // Key --> codPalete     Value --> Palete
 
-    Transporte()
+    public Transporte()
     {
         this.robots=new HashMap<>();
         this.paletes=new HashMap<>();
@@ -64,14 +64,14 @@ public class Transporte {
         {
             if (palete.getCodPalete().equals(codPalete))
             {
-               if (palete.getLocalizacao().equals(0))
-               {
-                   l.setLocalizacao(2);
-               } //funçao primeira disponivel
-               if (palete.getLocalizacao().getLocalizacao()>0 && palete.getLocalizacao().getLocalizacao()<11)
-               {
-                   l.setLocalizacao(11);
-               }
+                if (palete.getLocalizacao().equals(0))
+                {
+                    l.setLocalizacao(2);
+                } //funçao primeira disponivel
+                if (palete.getLocalizacao().getLocalizacao()>0 && palete.getLocalizacao().getLocalizacao()<11)
+                {
+                    l.setLocalizacao(11);
+                }
             }
         }
         return l;
@@ -81,7 +81,7 @@ public class Transporte {
     {
         for(Palete palete : paletes.values())
         {
-           // if (palete.getCodPalete().equals(codPalete)) palete.setNecessidadeTransporte(true);
+            if (palete.getCodPalete().equals(codPalete)) palete.setNecessidadeTransporte(1);
         }
     }
 
@@ -89,7 +89,7 @@ public class Transporte {
     {
         for(Palete palete : paletes.values())
         {
-            //if (palete.getCodPalete().equals(codPalete)) palete.setNecessidadeTransporte(false);
+            if (palete.getCodPalete().equals(codPalete)) palete.setNecessidadeTransporte(0);
         }
     }
 

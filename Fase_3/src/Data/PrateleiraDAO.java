@@ -1,8 +1,8 @@
 package Data;
 
 import Business.Localizacao;
-import Business.Palete;
-import Business.Prateleira;
+import Business.Armazenamento.Palete;
+import Business.Armazenamento.Prateleira;
 
 import java.sql.*;
 import java.util.Collection;
@@ -30,7 +30,7 @@ public class PrateleiraDAO implements Map<String, Prateleira>
             stm.execute(sql);
             sql = "CREATE TABLE IF NOT EXISTS prateleiras (" +
                   "CodPrateleira varchar(20) NOT NULL PRIMARY KEY, " +
-                  "Palete varchar(10), foreign key(Palete) references paletes(CodPalete), " +
+                  "Palete varchar(10) DEFAULT NULL, foreign key(Palete) references paletes(CodPalete), " +
                   "Localizacao varchar(45), foreign key(Localizacao) references localizacoes(Localizacao))";
             stm.execute(sql);
         } catch (SQLException e) {

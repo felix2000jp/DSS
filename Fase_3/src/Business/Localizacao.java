@@ -8,7 +8,7 @@ public class Localizacao {
         this.localizacao = -1;
     }
 
-    Localizacao(Localizacao a)
+    public Localizacao(Localizacao a)
     {
         this.localizacao = a.getLocalizacao();
     }

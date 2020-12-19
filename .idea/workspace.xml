@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4cc36829-8a1a-444c-8328-9dba0d02ca8c" name="Default Changelist" comment="MapaDAO">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fase_3/src/Business/Transporte/Aresta.java" beforeDir="false" afterPath="$PROJECT_DIR$/Fase_3/src/Business/Transporte/Aresta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fase_3/src/Data/MapaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Fase_3/src/Data/MapaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fase_3/src/Ui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Fase_3/src/Ui/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dss.iml" beforeDir="false" afterPath="$PROJECT_DIR$/dss.iml" afterDir="false" />
+    <list default="true" id="4cc36829-8a1a-444c-8328-9dba0d02ca8c" name="Default Changelist" comment="Rafa">
+      <change beforePath="$PROJECT_DIR$/out/production/dss/Business/Armazenamento/Palete.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dss/Business/Armazenamento/Palete.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dss/Data/PaleteDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dss/Data/PaleteDAO.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +14,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -41,7 +38,14 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main (1)">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="dss" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Ui.Main" />
       <module name="dss" />
@@ -55,21 +59,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -87,6 +79,11 @@
       <workItem from="1608288094694" duration="286000" />
       <workItem from="1608293072631" duration="114000" />
       <workItem from="1608299530838" duration="1896000" />
+      <workItem from="1608391049668" duration="1177000" />
+      <workItem from="1608393823385" duration="36000" />
+      <workItem from="1608394202525" duration="305000" />
+      <workItem from="1608395242338" duration="494000" />
+      <workItem from="1608396397148" duration="364000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <created>1608288319011</created>
@@ -102,7 +99,42 @@
       <option name="project" value="LOCAL" />
       <updated>1608293162089</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Organizacao">
+      <created>1608391302377</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1608391302377</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Organizacao">
+      <created>1608391400991</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1608391400991</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Organizacao">
+      <created>1608391583360</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1608391583360</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Organizacao">
+      <created>1608392220698</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1608392220698</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Rafa">
+      <created>1608396569448</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1608396569448</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,6 +155,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="." />
     <MESSAGE value="MapaDAO" />
-    <option name="LAST_COMMIT_MESSAGE" value="MapaDAO" />
+    <MESSAGE value="Organizacao" />
+    <MESSAGE value="Rafa" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rafa" />
   </component>
 </project>

@@ -1,11 +1,10 @@
-package Business.Armazem;
+package Business.Armazenamento;
 
 import Business.Localizacao;
-import Business.Palete;
 
 import java.util.Map;
 
-public interface iArmazenamento
+public interface IArmazenamento
 {
     // Dado um codigo de Palete dá a localização.
     Localizacao localizaPalete (Palete palete);

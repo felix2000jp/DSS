@@ -1,7 +1,7 @@
 package Data;
 
 import Business.Localizacao;
-import Business.Palete;
+import Business.Armazenamento.Palete;
 
 import java.sql.*;
 import java.util.Collection;
@@ -28,7 +28,8 @@ public class PaleteDAO implements Map<String, Palete> {
                     "CodPalete varchar(20) NOT NULL PRIMARY KEY, " +
                     "Conteudo varchar(45) DEFAULT NULL, " +
                     "EntidadeRegisto varchar(45) DEFAULT NULL, " +
-                    "Localizacao varchar(45), foreign key(Localizacao) references localizacoes(Localizacao))";
+                    "Localizacao varchar(45), foreign key(Localizacao) references localizacoes(Localizacao))"+
+                    "NecessidadeTransporte int(4) NOT NULL";
             stm.execute(sql);
         } catch (SQLException e) {
             // Erro a criar tabela...
@@ -57,9 +58,9 @@ public class PaleteDAO implements Map<String, Palete> {
                 ) {
             stm.execute("INSERT INTO localizacoes (Localizacao) VALUES ('" + local.getLocalizacao() + "') " +
                     "ON DUPLICATE KEY UPDATE Localizacao=VALUES(Localizacao)");
-            stm.execute("INSERT INTO paletes (CodPalete, Conteudo, EntidadeRegisto, Localizacao) " +
-                    "VALUES ('" + p.getCodPalete() + "', '" + p.getConteudo() + "', '" + p.getEntidadeRegisto() + "', '" + local.getLocalizacao() + "')" +
-                    "ON DUPLICATE KEY UPDATE Conteudo=VALUES(Conteudo), EntidadeRegisto=VALUES(EntidadeRegisto), Localizacao=VALUES(Localizacao)");
+            stm.execute("INSERT INTO paletes (CodPalete, Conteudo, EntidadeRegisto, Localizacao,NecessidadeTransporte) " +
+                    "VALUES ('" + p.getCodPalete() + "', '" + p.getConteudo() + "', '" + p.getEntidadeRegisto() + "', '" + local.getLocalizacao() + "','"+p.getNecessidadeTransporte()+"')" +
+                    "ON DUPLICATE KEY UPDATE Conteudo=VALUES(Conteudo), EntidadeRegisto=VALUES(EntidadeRegisto), Localizacao=VALUES(Localizacao), NecessidadeTransporte=VALUES(NecessidadeTransporte)");
         } catch (SQLException e) {
             // Database error!
             e.printStackTrace();
@@ -131,7 +132,7 @@ public class PaleteDAO implements Map<String, Palete> {
                         ResultSet rs = stm.executeQuery("SELECT * FROM paletes WHERE CodPalete='" + key + "'")
                 ) {
             if (rs.next()) {
-                p = new Palete(rs.getString("CodPalete"), rs.getString("Conteudo"), rs.getString("EntidadeRegisto"), rs.getString("Localizacao"));
+                p = new Palete(rs.getString("CodPalete"), rs.getString("Conteudo"), rs.getString("EntidadeRegisto"), rs.getString("Localizacao"),rs.getString("NecessidadeTransporte"));
             }
         } catch (SQLException e) {
             // Database error!

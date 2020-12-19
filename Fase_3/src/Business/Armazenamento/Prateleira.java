@@ -1,6 +1,6 @@
-package Business;
+package Business.Armazenamento;
 
-import java.util.Comparator;
+import Business.Localizacao;
 
 public class Prateleira implements Comparable<Prateleira> {
     String codPrateleira;

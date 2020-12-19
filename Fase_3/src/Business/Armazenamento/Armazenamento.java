@@ -1,8 +1,6 @@
-package Business.Armazem;
+package Business.Armazenamento;
 
 import Business.Localizacao;
-import Business.Palete;
-import Business.Prateleira;
 import Data.PaleteDAO;
 import Data.PrateleiraDAO;
 
@@ -11,7 +9,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Armazenamento implements iArmazenamento{
+public class Armazenamento implements IArmazenamento {
     Map<String , Palete> paletes;         // Key --> codPalete         Value --> Palete
     Map<String , Prateleira> prateleiras; // Key --> codPrateleira     Value --> Prateleira
 
@@ -61,7 +59,7 @@ public class Armazenamento implements iArmazenamento{
     public void atualizaLocalizacaoPalete (Palete palete, Localizacao localizacao)
     {
 
-        Palete plt = new Palete(palete.getCodPalete(), palete.getConteudo(), palete.getEntidadeRegisto(), localizacao);
+        Palete plt = new Palete(palete.getCodPalete(), palete.getConteudo(), palete.getEntidadeRegisto(), localizacao,palete.getNecessidadeTransporte());
         paletes.put(plt.getCodPalete(),plt);
 
         for(Prateleira prateleira : prateleiras.values())
