@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4cc36829-8a1a-444c-8328-9dba0d02ca8c" name="Default Changelist" comment="MapaDAO">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fase_3/src/Data/PrateleiraDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Fase_3/src/Data/PrateleiraDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fase_3/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Fase_3/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dss/Business/Localizacao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dss/Business/Localizacao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dss/Business/Transporte/iTransporte.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dss/Business/Transporte/iTransporte.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dss/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dss/Main.class" afterDir="false" />
+    <list default="true" id="4cc36829-8a1a-444c-8328-9dba0d02ca8c" name="Default Changelist" comment="Rafa">
+      <change beforePath="$PROJECT_DIR$/out/production/dss/Business/Armazenamento/Palete.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dss/Business/Armazenamento/Palete.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dss/Data/PaleteDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dss/Data/PaleteDAO.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +83,7 @@
       <workItem from="1608393823385" duration="36000" />
       <workItem from="1608394202525" duration="305000" />
       <workItem from="1608395242338" duration="494000" />
-      <workItem from="1608396397148" duration="22000" />
+      <workItem from="1608396397148" duration="364000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <created>1608288319011</created>
@@ -131,7 +127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608392220698</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Rafa">
+      <created>1608396569448</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1608396569448</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,6 +156,7 @@
     <MESSAGE value="." />
     <MESSAGE value="MapaDAO" />
     <MESSAGE value="Organizacao" />
-    <option name="LAST_COMMIT_MESSAGE" value="Organizacao" />
+    <MESSAGE value="Rafa" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rafa" />
   </component>
 </project>
