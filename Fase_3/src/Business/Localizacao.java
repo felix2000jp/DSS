@@ -1,7 +1,5 @@
 package Business;
 
-import Business.Armazenamento.Palete;
-
 public class Localizacao implements Comparable<Localizacao>{
     private int localizacao;
 
@@ -10,7 +8,7 @@ public class Localizacao implements Comparable<Localizacao>{
         this.localizacao = -1;
     }
 
-    public Localizacao(Localizacao a)
+    Localizacao(Localizacao a)
     {
         this.localizacao = a.getLocalizacao();
     }

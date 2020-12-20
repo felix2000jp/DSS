@@ -10,10 +10,10 @@ import java.util.Map;
 
 public class ArmazemFacade implements IArmazemFacade{
 
-    IArmazenamento armazenamento;
-    ITransporte transporte;
+    private IArmazenamento armazenamento;
+    private ITransporte transporte;
 
-    public ArmazemFacade() {
+    ArmazemFacade() {
         this.armazenamento = new Armazenamento();
         this.transporte = new Transporte();
     }

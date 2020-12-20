@@ -1,9 +1,9 @@
 package Business.Transporte;
 
 public class Aresta {
-    int inicio;
-    int destino;
-    double peso;
+    private int inicio;
+    private int destino;
+    private double peso;
 
     Aresta()
     {

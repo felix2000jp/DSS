@@ -36,7 +36,7 @@ public class Palete implements Comparable<Palete>{
         this.necessidadeTransporte = Integer.parseInt(nt);
     }
 
-    public Palete(String codPalete, String conteudo, String entidadeRegisto, int localizacao,Integer nt)
+    Palete(String codPalete, String conteudo, String entidadeRegisto, int localizacao,Integer nt)
     {
         this.codPalete = codPalete;
         this.conteudo = conteudo;

@@ -1,23 +1,23 @@
 package Business;
 
 public class Sessao {
-    String idGestor;
-    Boolean sessaoIniciada;
+    private String idGestor;
+    private Boolean sessaoIniciada;
 
 
-    public Sessao()
+    Sessao()
     {
         this.idGestor="";
         this.sessaoIniciada=false;
     }
 
-    public Sessao (Sessao s)
+    Sessao (Sessao s)
     {
         this.idGestor = s.getIdGestor();
         this.sessaoIniciada = s.getSessaoIniciada();
     }
 
-    public Sessao(String idGestor, Boolean sessaoiniciada)
+    Sessao(String idGestor, Boolean sessaoiniciada)
     {
         this.idGestor = idGestor;
         this.sessaoIniciada=sessaoiniciada;

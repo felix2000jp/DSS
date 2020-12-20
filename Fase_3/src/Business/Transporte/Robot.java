@@ -27,7 +27,7 @@ public class Robot {
         this.rota = r.getRota();
     }
 
-    public Robot(String c, int b, Localizacao local)
+    Robot(String c, int b, Localizacao local)
     {
         this.codRobot = c;
         this.disponivel = b;

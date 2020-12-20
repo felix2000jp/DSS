@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Mapa
 {
-    Map<Localizacao, List<Aresta>> mapa;
+    private Map<Localizacao, List<Aresta>> mapa;
 
     Mapa()
     {
@@ -21,7 +21,7 @@ public class Mapa
     this.mapa = a.getMapa();
     }
 
-    public Mapa(Map<Localizacao, List<Aresta>> mapa)
+    Mapa(Map<Localizacao, List<Aresta>> mapa)
     {
         this.mapa = mapa;
     }
