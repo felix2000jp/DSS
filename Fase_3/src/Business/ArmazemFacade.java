@@ -3,6 +3,7 @@ package Business;
 import Business.Armazenamento.Armazenamento;
 import Business.Armazenamento.IArmazenamento;
 import Business.Transporte.ITransporte;
+import Business.Transporte.Robot;
 import Business.Transporte.Transporte;
 
 import java.util.Map;
@@ -29,13 +30,13 @@ public class ArmazemFacade implements IArmazemFacade{
     }
 
     @Override
-    public void notificarRecolha(String codRobot) {
-        transporte.notificarRecolha(codRobot);
+    public void notificarRecolha(Robot robot) {
+        transporte.notificarRecolha(robot);
     }
 
     @Override
-    public void notificarEntrega(String codRobot) {
-        transporte.notificarEntrega(codRobot);
+    public void notificarEntrega(Robot robot) {
+        transporte.notificarEntrega(robot);
     }
 
     @Override

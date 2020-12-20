@@ -1,7 +1,6 @@
 package Business.Transporte;
 
 import Business.Localizacao;
-import Data.MapaDAO;
 import Data.RobotDAO;
 
 import java.util.*;
@@ -21,7 +20,7 @@ public class Transporte implements ITransporte{
         this.mapa = t.getMapa();
     }
 
-    public Transporte(Map<String, Robot> rs, Mapa m) {
+    Transporte(Map<String, Robot> rs, Mapa m) {
         this.robots = rs;
         this.mapa = m;
     }
@@ -50,12 +49,14 @@ public class Transporte implements ITransporte{
         return null;
     }
 
-    public void setRobotDisponivel(String codRobot) {
-        this.robots.get(codRobot).setDisponivel(1);
+    public void setRobotDisponivel(Robot robot) {
+        robot.setDisponivel(1);
+        this.robots.replace(robot.getCodRobot(), robot);
     }
 
-    public void setRobotIndisponivel(String codRobot) {
-        this.robots.get(codRobot).setDisponivel(0);
+    public void setRobotIndisponivel(Robot robot) {
+        robot.setDisponivel(0);
+        this.robots.replace(robot.getCodRobot(), robot);
     }
 
     @Override
@@ -72,24 +73,22 @@ public class Transporte implements ITransporte{
     }
 
     @Override
-    public void notificarRecolha(String codRobot) {
-        Robot r = this.robots.get(codRobot);
-        r.setDisponivel(0);
-        this.robots.put(codRobot, r);
-        RobotDAO.getInstance().replace(r.getCodRobot(), r);
+    public void notificarRecolha(Robot robot) {
+        robot.setDisponivel(0);
+        this.robots.put(robot.getCodRobot(), robot);
+        RobotDAO.getInstance().replace(robot.getCodRobot(), robot);
     }
 
     @Override
-    public void notificarEntrega(String codRobot) {
-        Robot r = this.robots.get(codRobot);
-        r.setDisponivel(1);
-        this.robots.replace(codRobot, r);
-        RobotDAO.getInstance().put(r.getCodRobot(), r);
+    public void notificarEntrega(Robot robot) {
+        robot.setDisponivel(1);
+        this.robots.replace(robot.getCodRobot(), robot);
+        RobotDAO.getInstance().put(robot.getCodRobot(), robot);
     }
 
-    public void atualizaLocalizacaoRobot(String codRobot, Localizacao localizacao) {
-        this.robots.get(codRobot).setLocalizacao(localizacao);
-        RobotDAO.getInstance().put(this.robots.get(codRobot).getCodRobot(), this.robots.get(codRobot));
+    public void atualizaLocalizacaoRobot(Robot robot, Localizacao localizacao) {
+        this.robots.get(robot.getCodRobot()).setLocalizacao(localizacao);
+        RobotDAO.getInstance().put(robot.getCodRobot(), robot);
     }
 
     @Override

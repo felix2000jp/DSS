@@ -11,8 +11,8 @@ public interface ITransporte
     void comunicaTransporte();
 
     // Notificar recolha de paletes (Actor: Robot)
-    void notificarRecolha(String codRobot);
+    void notificarRecolha(Robot robot);
 
     // Notificar entrega de paletes (Actor: Robot)
-    void notificarEntrega(String codRobot);
+    void notificarEntrega(Robot robot);
 }
