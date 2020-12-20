@@ -17,6 +17,7 @@ public class Robot {
         this.disponivel = 1;
         this.localizacao = new Localizacao();
         this.rota = new ArrayList<>();
+
     }
 
     Robot (Robot r)
@@ -32,6 +33,7 @@ public class Robot {
         this.codRobot = c;
         this.disponivel = b;
         this.localizacao = local;
+        this.rota = new ArrayList<>();
     }
 
     public Robot(String c, int b, String local)

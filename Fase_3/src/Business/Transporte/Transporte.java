@@ -12,6 +12,9 @@ public class Transporte implements ITransporte{
     public Transporte() {
         this.robots = RobotDAO.getInstance();
         this.mapa = new Mapa();
+        Robot robot1 = new Robot("Robot1", 1, new Localizacao(0));
+        this.robots.put("Robot1", robot1);
+        RobotDAO.getInstance().put(robot1.getCodRobot(), robot1);
     }
 
     Transporte(Transporte t)

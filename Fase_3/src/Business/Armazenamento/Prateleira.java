@@ -39,7 +39,7 @@ public class Prateleira implements Comparable<Prateleira> {
     {
         this.codPrateleira = codPrateleira;
         this.palete = palete;
-        this.localizacao = new Localizacao(localizacao);
+        this.localizacao = localizacao;
     }
 
     public String getCodPrateleira()
