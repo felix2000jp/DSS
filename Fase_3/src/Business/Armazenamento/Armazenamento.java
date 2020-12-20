@@ -18,6 +18,7 @@ public class Armazenamento implements IArmazenamento {
         this.paletes = PaleteDAO.getInstance();
         this.prateleiras = PrateleiraDAO.getInstance();
 
+        /*
         Prateleira prateleiraA = new Prateleira("A", null, 1);
         Prateleira prateleiraB = new Prateleira("B", null, 2);
         Prateleira prateleiraC = new Prateleira("C", null, 3);
@@ -40,6 +41,8 @@ public class Armazenamento implements IArmazenamento {
         this.prateleiras.put(prateleiraH.getCodPrateleira(), prateleiraH);
         this.prateleiras.put(prateleiraI.getCodPrateleira(), prateleiraI);
         this.prateleiras.put(prateleiraJ.getCodPrateleira(), prateleiraJ);
+
+         */
     }
 
     public Collection<Palete> getPaletes()
@@ -86,15 +89,14 @@ public class Armazenamento implements IArmazenamento {
 
         for(Prateleira prateleira : this.prateleiras.values())
         {
-            if( prateleira.getLocalizacao().compareTo(localizacao) > 0 )
+            if( prateleira.getLocalizacao().compareTo(palete.getLocalizacao()) != 0 )
             {
                 prateleira.setPalete(palete);
                 prateleiras.put(prateleira.getCodPrateleira(), prateleira);
             }
         }
     }
-
-    // Mudar no diagrama de Classes List<Palete> --> String
+    
     public boolean disponivelPaletes(Palete palete)
     {
         boolean disponivel = true;
@@ -115,27 +117,23 @@ public class Armazenamento implements IArmazenamento {
 
         return localizacoes;
     }
-
-    /*
-        public Localizacao destinoPalete (String codPalete)
+    
+    public Localizacao destinoPalete (Palete palete)
     {
-        Localizacao l = new Localizacao();
-        for(Palete palete : paletes.values())
+        Localizacao entrada = new Localizacao(0);
+        Localizacao saida = new Localizacao(11);
+
+        if ( palete.getLocalizacao().compareTo(entrada) != 0 )
         {
-            if (palete.getCodPalete().equals(codPalete))
+            for (Prateleira prateleira : prateleiras.values())
             {
-                if (palete.getLocalizacao().equals(0))
-                {
-                    l.setLocalizacao(2);
-                } //funçao primeira disponivel
-                if (palete.getLocalizacao().getLocalizacao()>0 && palete.getLocalizacao().getLocalizacao()<11)
-                {
-                    l.setLocalizacao(11);
-                }
+                if( prateleira.getPalete() == null )
+                    return prateleira.getLocalizacao();
             }
+            return entrada;
         }
-        return l;
+        else return saida;
     }
-     */
+
 
 }

@@ -28,18 +28,18 @@ public class Prateleira implements Comparable<Prateleira> {
         this.localizacao = new Localizacao(localizacao);
     }
 
-    Prateleira(String codPrateleira, Palete palete, int localizacao)
+    public Prateleira(String codPrateleira, Palete palete, int localizacao)
     {
         this.codPrateleira = codPrateleira;
         this.palete = palete;
         this.localizacao = new Localizacao(localizacao);
     }
 
-    Prateleira(String codPrateleira, Palete palete, Localizacao localizacao)
+    public Prateleira(String codPrateleira, Palete palete, Localizacao localizacao)
     {
         this.codPrateleira = codPrateleira;
         this.palete = palete;
-        this.localizacao = new Localizacao(localizacao);
+        this.localizacao = localizacao;
     }
 
     public String getCodPrateleira()
