@@ -81,6 +81,7 @@ public class Armazenamento implements IArmazenamento {
     {
         paletes.remove(palete.getCodPalete());
         palete.setLocalizacao(localizacao);
+        palete.setNecessidadeTransporte(0);
         paletes.put(palete.getCodPalete(),palete);
 
         for(Prateleira prateleira : this.prateleiras.values())

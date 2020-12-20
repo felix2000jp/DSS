@@ -10,6 +10,6 @@ public interface IArmazemFacade {
     void comunicaTransporte ();
     void notificarRecolha(Robot robot);
     void notificarEntrega(Robot robot);
-    Map<String, Localizacao> consultarListagemLocalizações ();
+    Map<String, Localizacao> consultarListagemLocalizacoes ();
 
 }

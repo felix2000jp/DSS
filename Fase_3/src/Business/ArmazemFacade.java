@@ -20,27 +20,34 @@ public class ArmazemFacade implements IArmazemFacade{
 
 
     @Override
-    public void comunicaCodigoQR() {
+    public void comunicaCodigoQR()
+    {
 
     }
 
     @Override
-    public void comunicaTransporte() {
+    public void comunicaTransporte()
+    {
         transporte.comunicaTransporte();
     }
 
+
+
     @Override
-    public void notificarRecolha(Robot robot) {
+    public void notificarRecolha(Robot robot)
+    {
         transporte.notificarRecolha(robot);
     }
 
     @Override
-    public void notificarEntrega(Robot robot) {
+    public void notificarEntrega(Robot robot)
+    {
         transporte.notificarEntrega(robot);
     }
 
     @Override
-    public Map<String, Localizacao> consultarListagemLocalizações() {
-        return null;
+    public Map<String, Localizacao> consultarListagemLocalizacoes()
+    {
+        return armazenamento.determinaListaLocalizacao();
     }
 }
