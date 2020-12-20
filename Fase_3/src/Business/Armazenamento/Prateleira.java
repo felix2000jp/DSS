@@ -3,9 +3,9 @@ package Business.Armazenamento;
 import Business.Localizacao;
 
 public class Prateleira implements Comparable<Prateleira> {
-    String codPrateleira;
-    Palete palete;
-    Localizacao localizacao;
+    private String codPrateleira;
+    private Palete palete;
+    private Localizacao localizacao;
 
     Prateleira()
     {

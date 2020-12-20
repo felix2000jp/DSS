@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Robot {
-    String codRobot;
-    int disponivel;
-    Localizacao localizacao;
-    List<Localizacao> rota;
+    private String codRobot;
+    private int disponivel;
+    private Localizacao localizacao;
+    private List<Localizacao> rota;
 
     Robot()
     {

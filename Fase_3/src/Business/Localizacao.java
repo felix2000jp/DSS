@@ -3,7 +3,7 @@ package Business;
 import Business.Armazenamento.Palete;
 
 public class Localizacao implements Comparable<Localizacao>{
-    int localizacao;
+    private int localizacao;
 
     public Localizacao()
     {

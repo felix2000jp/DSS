@@ -7,8 +7,8 @@ import Data.RobotDAO;
 import java.util.*;
 
 public class Transporte implements ITransporte{
-    Map<String , Robot> robots;   // Key --> codRobot     Value --> Robot
-    Mapa mapa;
+    private Map<String , Robot> robots;   // Key --> codRobot     Value --> Robot
+    private Mapa mapa;
 
     public Transporte() {
         this.robots = RobotDAO.getInstance();
@@ -45,7 +45,7 @@ public class Transporte implements ITransporte{
     // Vai ao map de robots e devolve o primeiro disponivel
     public Robot robotDisponivel() { // Tem de ser alterado
         for (Robot robot : RobotDAO.getInstance().values()) {
-            if (robot.disponivel == 1) return robot;
+            if (robot.getDisponivel() == 1) return robot;
         }
         return null;
     }

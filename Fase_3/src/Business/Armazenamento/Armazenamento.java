@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Armazenamento implements IArmazenamento {
-    Map<String , Palete> paletes;         // Key --> codPalete         Value --> Palete
-    Map<String , Prateleira> prateleiras; // Key --> codPrateleira     Value --> Prateleira
+    private Map<String , Palete> paletes;         // Key --> codPalete         Value --> Palete
+    private Map<String , Prateleira> prateleiras; // Key --> codPrateleira     Value --> Prateleira
 
     public Armazenamento()
     {
@@ -77,8 +77,6 @@ public class Armazenamento implements IArmazenamento {
         return paletes.get(palete.getCodPalete()).getLocalizacao();
     }
 
-    // Não está a funcionar bem.
-    // É tambem preciso uma maneira de fazer com que na prateleira onde estava a palete deixa de a ter
     public void atualizaLocalizacaoPalete (Palete palete, Localizacao localizacao)
     {
         paletes.remove(palete.getCodPalete());
