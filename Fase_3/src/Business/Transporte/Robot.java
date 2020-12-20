@@ -2,16 +2,21 @@ package Business.Transporte;
 
 import Business.Localizacao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Robot {
     String codRobot;
     int disponivel;
     Localizacao localizacao;
+    List<Localizacao> rota;
 
     Robot()
     {
         this.codRobot = "";
         this.disponivel = 1;
         this.localizacao = new Localizacao();
+        this.rota = new ArrayList<>();
     }
 
     Robot (Robot r)
@@ -19,6 +24,7 @@ public class Robot {
         this.codRobot = r.getCodRobot();
         this.disponivel = r.getDisponivel();
         this.localizacao = r.getLocalizacao();
+        this.rota = r.getRota();
     }
 
     public Robot(String c, int b, Localizacao local)
@@ -64,6 +70,14 @@ public class Robot {
     public void setDisponivel(int disponivel)
     {
         this.disponivel = disponivel;
+    }
+
+    public List<Localizacao> getRota() {
+        return rota;
+    }
+
+    public void setRota(List<Localizacao> rota) {
+        this.rota = rota;
     }
 
     @Override

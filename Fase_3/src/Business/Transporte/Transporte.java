@@ -12,7 +12,7 @@ public class Transporte implements ITransporte{
 
     public Transporte() {
         this.robots = RobotDAO.getInstance();
-        mapaBD(MapaDAO.getInstance().values());
+        this.mapa = new Mapa();
     }
 
     Transporte(Transporte t)
@@ -43,45 +43,31 @@ public class Transporte implements ITransporte{
     }
 
     // Vai ao map de robots e devolve o primeiro disponivel
-    public Robot robotDisponivel() {
-        for (Robot robot : robots.values()) {
+    public Robot robotDisponivel() { // Tem de ser alterado
+        for (Robot robot : RobotDAO.getInstance().values()) {
             if (robot.disponivel == 1) return robot;
         }
         return null;
     }
 
-    public void setRobotDisponivel(String codRobot)
-    {
-        for(Robot robot : robots.values())
-        {
-            if (robot.codRobot.equals(codRobot)) robot.setDisponivel(1);
-        }
+    public void setRobotDisponivel(String codRobot) {
+        this.robots.get(codRobot).setDisponivel(1);
     }
 
     public void setRobotIndisponivel(String codRobot) {
-        for (Robot robot : robots.values()) {
-            if (robot.codRobot.equals(codRobot)) robot.setDisponivel(0);
-        }
-    }
-
-    private void mapaBD(Collection<List<Aresta>> arestas) {
-        Map<Localizacao, List<Aresta>> aux = new HashMap<>();
-        for (List<Aresta> la : arestas)
-            aux.put(new Localizacao(la.get(0).getInicio()), la); // Adiciona um inicio com os seus destinos ao map
-
-        this.mapa = new Mapa(aux);
-
+        this.robots.get(codRobot).setDisponivel(0);
     }
 
     @Override
     public void comunicaTransporte() {
         Robot r = robotDisponivel();
         List<Localizacao> l = new ArrayList<>();
+        // Falta calcular rota
         comunicaRota(r, l);
     }
 
     private void comunicaRota(Robot robot, List<Localizacao> l) {
-        //robot.setRota(l);
+        robot.setRota(l);
         this.robots.replace(robot.getCodRobot(), robot); // Atualiza o robot
     }
 
@@ -89,7 +75,8 @@ public class Transporte implements ITransporte{
     public void notificarRecolha(String codRobot) {
         Robot r = this.robots.get(codRobot);
         r.setDisponivel(0);
-        this.robots.replace(codRobot, r);
+        this.robots.put(codRobot, r);
+        RobotDAO.getInstance().replace(r.getCodRobot(), r);
     }
 
     @Override
@@ -97,14 +84,12 @@ public class Transporte implements ITransporte{
         Robot r = this.robots.get(codRobot);
         r.setDisponivel(1);
         this.robots.replace(codRobot, r);
+        RobotDAO.getInstance().put(r.getCodRobot(), r);
     }
 
-    public void atualizaLocalizacaoRobot(String codRobot, Localizacao localizacao)
-    {
-        for(Robot robot : robots.values())
-        {
-            if (robot.codRobot.equals(codRobot)) robot.setLocalizacao(localizacao);
-        }
+    public void atualizaLocalizacaoRobot(String codRobot, Localizacao localizacao) {
+        this.robots.get(codRobot).setLocalizacao(localizacao);
+        RobotDAO.getInstance().put(this.robots.get(codRobot).getCodRobot(), this.robots.get(codRobot));
     }
 
     @Override
