@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface IArmazemFacade {
 
-    void comunicaCodigoQR();
+    void comunicaCodigoQR(String CodPalete, String conteudo);
     void comunicaTransporte (String codPalete); // Falta parte do armazenamento
     void notificarRecolha(Robot robot);
     void notificarEntrega(Robot robot);
@@ -17,5 +17,7 @@ public interface IArmazemFacade {
     boolean haRobots();
     Robot getRobot(String codRobot);
     Palete getPalete(String codPalete);
+
+
 
 }

@@ -6,46 +6,34 @@ import Business.Transporte.Robot;
 
 import java.util.Scanner;
 
-public class TextUI {
-    // O model tem a 'lógica de negócio'.
+public class TextUI
+{
     private IArmazemFacade model;
+    private Scanner scan;
 
-    // Scanner para leitura
-    private Scanner scin;
 
-    /**
-     * Construtor.
-     *
-     * Cria os menus e a camada de negócio.
-     */
-    public TextUI() {
-
+    public TextUI()
+    {
         this.model = new ArmazemFacade();
-        scin = new Scanner(System.in);
+        this.scan = new Scanner(System.in);
     }
 
-    /**
-     * Executa o menu principal e invoca o método correspondente à opção seleccionada.
-     */
-    public void run() {
-        System.out.println("Bem vindo ao Sistema de Gestão de Turmas!");
+    public void run()
+    {
+        System.out.println("Bem vindo ao Sistema de Gestão do Armazém!");
         this.menuPrincipal();
         System.out.println("Até breve...");
     }
 
-    // Métodos auxiliares - Estados da UI
-
-    /**
-     * Estado - Menu Principal
-     */
     private void menuPrincipal() {
-        Menu menu = new Menu(new String[]{
+        Menu menu = new Menu(new String[]
+                {
                 "Operacoes sobre Robots",
                 "Operacoes sobre Paletes"
-        });
-        // Registar pré-condições das transições
-        menu.setPreCondition(1, ()->this.model.haRobots());
+                }
+        );
 
+        menu.setPreCondition(1, ()->this.model.haRobots());
 
         // Registar os handlers
         menu.setHandler(1, ()->operacoesRobots());
@@ -53,7 +41,9 @@ public class TextUI {
 
         menu.run();
     }
-    private void operacoesRobots(){
+
+    private void operacoesRobots()
+    {
         Menu menu = new Menu(new String[]{
                 "Sistema comunica ordem de transporte",
                 "Notificar recolha de paletes",
@@ -68,17 +58,20 @@ public class TextUI {
 
         menu.run();
     }
-    /**
-     *  Estado - Adicionar Aluno
-     */
-    private void comunicaTransporte() {
-        try {
+
+    private void comunicaTransporte()
+    {
+        try
+        {
             System.out.print("Codigo da palete: ");
-            String cod = scin.nextLine();
-            if (this.model.getPalete(cod) != null) {
+            String cod = scan.nextLine();
+            if (this.model.getPalete(cod) != null)
+            {
                 this.model.comunicaTransporte(cod);
                 System.out.println("Ordem de transporte dada");
-            } else {
+            }
+            else
+            {
                 System.out.println("Codigo de palete mal introduzido!");
             }
         }
@@ -87,38 +80,42 @@ public class TextUI {
         }
     }
 
-    /**
-     *  Estado - Adicionar Aluno
-     */
-    private void notificarRecolha() {
-        try {
+    private void notificarRecolha()
+    {
+        try
+        {
             System.out.print("Codigo do robot: ");
-            String cod = scin.nextLine();
+            String cod = scan.nextLine();
             Robot r;
-            if ((r = this.model.getRobot(cod)) != null) {
+            if ((r = this.model.getRobot(cod)) != null)
+            {
                 this.model.notificarRecolha(r);
                 System.out.println("Palete recolhida");
-            } else {
-                System.out.println("Codigo do Robot mal introduzido!");
+            }
+            else
+            {
+                System.out.println( "Codigo do Robot mal introduzido!" );
             }
         }
-        catch (NullPointerException e) {
+        catch (NullPointerException e)
+        {
             System.out.println(e.getMessage());
         }
     }
 
-    /**
-     *  Estado - Adicionar Aluno
-     */
-    private void notificarEntrega() {
+    private void notificarEntrega()
+    {
         try {
             System.out.print("Codigo do robot: ");
-            String cod = scin.nextLine();
+            String cod = scan.nextLine();
             Robot r;
-            if ((r = this.model.getRobot(cod)) != null) {
+            if ((r = this.model.getRobot(cod)) != null)
+            {
                 this.model.notificarEntrega(r);
                 System.out.println("Palete entregue");
-            } else {
+            }
+            else
+            {
                 System.out.println("Codigo do Robot mal introduzido!");
             }
         }
@@ -126,8 +123,6 @@ public class TextUI {
             System.out.println(e.getMessage());
         }
     }
-
-
 
     private void operacoesPaletes() {
         Menu menu = new Menu(new String[]{
@@ -145,33 +140,27 @@ public class TextUI {
         menu.run();
     }
 
-    /**
-     *  Estado - Adicionar Aluno
-     */
     private void comunicaCodigoQR() {
-        try {
-            /*
-            System.out.print("Codigo do robot: ");
-            String cod = scin.nextLine();
-            if (!this.model.existeRobot(cod)) {
-                Robot r = this.model.getRobot(cod);
-                this.model.notificarEntrega(r);
-                System.out.println("Palete entregue");
-            } else {
-                System.out.println("Codigo do Robot mal introduzido!");
-            }*/
+        try
+        {
+            System.out.print("Codigo do Palete: ");
+            String codPalete = scan.nextLine();
+            System.out.print("Conteudo da Palete: ");
+            String conteudo = scan.nextLine();
+
+            this.model.comunicaCodigoQR(codPalete,conteudo);
+
+            System.out.println("Palete Criada com Sucesso");
         }
-        catch (NullPointerException e) {
+        catch (NullPointerException e)
+        {
             System.out.println(e.getMessage());
         }
     }
 
-    /**
-     *  Estado - Adicionar Aluno
-     */
-    private void consultarListagemLocalizacoes() {
+    private void consultarListagemLocalizacoes()
+    {
         System.out.println(this.model.consultarListagemLocalizacoes());
     }
-
 
 }

@@ -18,7 +18,6 @@ public class Armazenamento implements IArmazenamento {
         this.paletes = PaleteDAO.getInstance();
         this.prateleiras = PrateleiraDAO.getInstance();
 
-        /*
         Prateleira prateleiraA = new Prateleira("A", null, 1);
         Prateleira prateleiraB = new Prateleira("B", null, 2);
         Prateleira prateleiraC = new Prateleira("C", null, 3);
@@ -42,7 +41,6 @@ public class Armazenamento implements IArmazenamento {
         this.prateleiras.put(prateleiraI.getCodPrateleira(), prateleiraI);
         this.prateleiras.put(prateleiraJ.getCodPrateleira(), prateleiraJ);
 
-         */
     }
 
     public Collection<Palete> getPaletes()
@@ -128,12 +126,12 @@ public class Armazenamento implements IArmazenamento {
         return this.paletes.size() > 0;
     }
 
-    public Localizacao destinoPalete (Palete palete)
+    public Localizacao destinoPalete (Localizacao palete)
     {
         Localizacao entrada = new Localizacao(0);
         Localizacao saida = new Localizacao(11);
 
-        if ( palete.getLocalizacao().compareTo(entrada) != 0 )
+        if ( palete.compareTo(entrada) != 0 )
         {
             for (Prateleira prateleira : prateleiras.values())
             {
@@ -144,6 +142,4 @@ public class Armazenamento implements IArmazenamento {
         }
         else return saida;
     }
-
-
 }

@@ -21,5 +21,7 @@ public interface IArmazenamento
     Map<String, Localizacao> determinaListaLocalizacao();
 
     boolean haPaletes();
+    void adicionaPalete(Palete palete);
+    Localizacao destinoPalete (Localizacao palete);
 
 }

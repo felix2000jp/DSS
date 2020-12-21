@@ -14,50 +14,51 @@ public class ArmazemFacade implements IArmazemFacade{
     private IArmazenamento armazenamento;
     private ITransporte transporte;
 
-    public ArmazemFacade() {
+    public ArmazemFacade()
+    {
         this.armazenamento = new Armazenamento();
         this.transporte = new Transporte();
     }
 
 
     @Override
-    public void comunicaCodigoQR()
+    public void comunicaCodigoQR(String codPalete, String conteudo)
     {
-
+        Palete palete = new Palete(codPalete, conteudo, null, 0, 1);
+        this.armazenamento.adicionaPalete(palete);
     }
 
     @Override
     public void comunicaTransporte(String codPalete)
     {
-        transporte.comunicaTransporte();
+        this.transporte.comunicaTransporte();
     }
-
-
 
     @Override
     public void notificarRecolha(Robot robot)
     {
-        transporte.notificarRecolha(robot);
+        this.transporte.notificarRecolha(robot);
     }
 
     @Override
     public void notificarEntrega(Robot robot)
     {
-        transporte.notificarEntrega(robot);
+        this.transporte.notificarEntrega(robot);
+        Localizacao fin = this.armazenamento.destinoPalete(robot.getLocalizacao());
     }
 
     @Override
     public Map<String, Localizacao> consultarListagemLocalizacoes()
     {
-        return armazenamento.determinaListaLocalizacao();
+        return this.armazenamento.determinaListaLocalizacao();
     }
 
     public boolean haPaletes(){
-        return armazenamento.haPaletes();
+        return this.armazenamento.haPaletes();
     }
 
     public boolean haRobots(){
-        return transporte.haRobots();
+        return this.transporte.haRobots();
     }
 
     @Override

@@ -77,6 +77,7 @@ public class Transporte implements ITransporte{
 
     private void comunicaRota(Robot robot, List<Localizacao> l) {
         robot.setRota(l);
+        //robot.setDisponivel(0);
         this.robots.replace(robot.getCodRobot(), robot); // Atualiza o robot
     }
 
