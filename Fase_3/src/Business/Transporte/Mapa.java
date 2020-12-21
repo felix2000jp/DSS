@@ -167,6 +167,16 @@ public class Mapa
         return res;
     }
 
+    public double calculaPesoRota (List<Aresta> rota) {
+        double res = 0;
+
+        for (Aresta a : rota) {
+            res += a.getPeso();
+        }
+
+        return res;
+    }
+
     @Override
     protected Object clone()
     {
