@@ -122,7 +122,7 @@ public class Mapa
         this.mapa.put(new Localizacao(11), saida);
     }
 
- /*   private class SortbyDest implements Comparator<Aresta> {
+    private class SortbyDest implements Comparator<Aresta> {
         public int compare(Aresta a, Aresta b){
             return b.getDestino() - a.getDestino();
         }
@@ -132,40 +132,40 @@ public class Mapa
         int posAtual = start;
         List<Aresta> verticeAtual;
         List<Aresta> res = new ArrayList<>();
-        Aresta proxAresta;
+        Aresta proxAresta = null;
 
         while (destino != posAtual) {
             verticeAtual = this.mapa.get(posAtual);
-            if ((posAtual == 1 || posAtual == 11) && dest < 6) {
+            if ((posAtual == 1 || posAtual == 11) && destino < 6) {
                 Collections.sort(verticeAtual, new SortbyDest());
                 proxAresta = verticeAtual.get(1);
-            } else if ((posAtual == 1 || posAtual == 11) && dest > 6) {
+            } else if ((posAtual == 1 || posAtual == 11) && destino > 6) {
                 Collections.sort(verticeAtual, new SortbyDest());
                 proxAresta = verticeAtual.get(0);
-            } else if ((posAtual == 2 || posAtual == 3) && dest => 6 && dest =< 8) {
+            } else if ((posAtual == 2 || posAtual == 3) && destino >= 6 && destino <= 8) {
                 Collections.sort(verticeAtual, new SortbyDest());
                 proxAresta = verticeAtual.get(1);
-            } else if ((posAtual == 8 || posAtual == 9) && dest => 3 && dest =< 5) {
+            } else if ((posAtual == 8 || posAtual == 9) && destino >= 3 && destino <= 5) {
                 Collections.sort(verticeAtual, new SortbyDest());
                 proxAresta = verticeAtual.get(0);
-            } else if (posAtual == 4 && dest == 6) {
+            } else if (posAtual == 4 && destino == 6) {
                 Collections.sort(verticeAtual, new SortbyDest());
                 proxAresta = verticeAtual.get(1);
-            } else if (posAtual == 7 && dest == 5) {
+            } else if (posAtual == 7 && destino == 5) {
                 Collections.sort(verticeAtual, new SortbyDest());
                 proxAresta = verticeAtual.get(0);
             } else if (posAtual < destino) {
                 Collections.sort(verticeAtual, new SortbyDest());
                 proxAresta = verticeAtual.get(0);
             } else if (posAtual > destino) {
-                Collections.reverse(verticeAtual, new SortbyDest());
+                Collections.sort(verticeAtual, new SortbyDest());
                 proxAresta = verticeAtual.get(0);
             }
             res.add(proxAresta);
             posAtual = proxAresta.getDestino();
         }
         return res;
-    }*/
+    }
 
     @Override
     protected Object clone()
