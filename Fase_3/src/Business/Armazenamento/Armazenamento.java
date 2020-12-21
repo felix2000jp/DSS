@@ -85,17 +85,17 @@ public class Armazenamento implements IArmazenamento {
 
     public void atualizaLocalizacaoPalete (Palete palete, Localizacao localizacao)
     {
-        paletes.remove(palete.getCodPalete());
+        this.paletes.remove(palete.getCodPalete());
         palete.setLocalizacao(localizacao);
         palete.setNecessidadeTransporte(0);
-        paletes.put(palete.getCodPalete(),palete);
+        this.paletes.put(palete.getCodPalete(),palete);
 
         for(Prateleira prateleira : this.prateleiras.values())
         {
             if( prateleira.getLocalizacao().compareTo(palete.getLocalizacao()) != 0 )
             {
                 prateleira.setPalete(palete);
-                prateleiras.put(prateleira.getCodPrateleira(), prateleira);
+                this.prateleiras.put(prateleira.getCodPrateleira(), prateleira);
             }
         }
     }

@@ -159,6 +159,7 @@ public class PaleteDAO implements Map<String, Palete> {
                 ) {
             stm.execute("SET FOREIGN_KEY_CHECKS = 0;");
             stm.execute("UPDATE prateleiras SET Palete=NULL WHERE Palete='" + key + "'");
+            stm.execute("UPDATE robots SET Palete=NULL WHERE Palete='" + key + "'");
             stm.execute("DELETE FROM paletes WHERE CodPalete='" + key + "'");
             stm.execute("SET FOREIGN_KEY_CHECKS = 1;");
         } catch (Exception e) {
@@ -188,6 +189,7 @@ public class PaleteDAO implements Map<String, Palete> {
                 ) {
             stm.execute("SET FOREIGN_KEY_CHECKS = 0;");
             stm.execute("UPDATE prateleiras SET Palete=NULL");
+            stm.execute("UPDATE robots SET Palete=NULL");
             stm.executeUpdate("TRUNCATE paletes");
             stm.execute("SET FOREIGN_KEY_CHECKS = 1;");
         } catch (SQLException e) {

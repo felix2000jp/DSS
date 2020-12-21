@@ -128,11 +128,14 @@ public class Mapa
         }
     }
 
-    public List<Aresta> calculaRotas(int destino, int start) {
+    public List<Localizacao> calculaRotas(Localizacao start1, Localizacao destino1) {
+        int start = start1.getLocalizacao();
+        int destino = destino1.getLocalizacao();
         int posAtual = start;
         List<Aresta> verticeAtual;
-        List<Aresta> res = new ArrayList<>();
+        List<Localizacao> res = new ArrayList<>();
         Aresta proxAresta = null;
+        res.add(start1);
 
         while (destino != posAtual) {
             verticeAtual = this.mapa.get(posAtual);
@@ -161,9 +164,10 @@ public class Mapa
                 Collections.sort(verticeAtual, new SortbyDest());
                 proxAresta = verticeAtual.get(0);
             }
-            res.add(proxAresta);
+            res.add(new Localizacao(proxAresta.getDestino()));
             posAtual = proxAresta.getDestino();
         }
+
         return res;
     }
 

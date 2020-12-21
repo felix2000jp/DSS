@@ -9,7 +9,7 @@ public class Palete implements Comparable<Palete>{
     private Localizacao localizacao;
     private Integer necessidadeTransporte;
 
-    Palete()
+    public Palete()
     {
         this.codPalete = "";
         this.conteudo = "";

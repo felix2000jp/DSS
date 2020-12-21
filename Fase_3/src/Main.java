@@ -1,13 +1,4 @@
-import Business.Armazenamento.Armazenamento;
-import Business.Armazenamento.Palete;
-import Business.Armazenamento.Prateleira;
-import Business.Localizacao;
-import Data.PaleteDAO;
-import Data.PrateleiraDAO;
-import Data.RobotDAO;
 import Ui.TextUI;
-
-import java.util.Map;
 
 public class Main
 {

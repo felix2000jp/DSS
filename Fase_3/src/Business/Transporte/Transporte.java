@@ -1,5 +1,6 @@
 package Business.Transporte;
 
+import Business.Armazenamento.Palete;
 import Business.Localizacao;
 import Data.RobotDAO;
 
@@ -12,6 +13,7 @@ public class Transporte implements ITransporte{
     public Transporte() {
         this.robots = RobotDAO.getInstance();
         this.mapa = new Mapa();
+        this.mapa.povoamento();
         Robot robot1 = new Robot("Robot1", 1, new Localizacao(0));
         this.robots.put("Robot1", robot1);
         RobotDAO.getInstance().put(robot1.getCodRobot(), robot1);
@@ -57,42 +59,36 @@ public class Transporte implements ITransporte{
         return null;
     }
 
-    public void setRobotDisponivel(Robot robot) {
-        robot.setDisponivel(1);
-        this.robots.replace(robot.getCodRobot(), robot);
-    }
-
-    public void setRobotIndisponivel(Robot robot) {
-        robot.setDisponivel(0);
-        this.robots.replace(robot.getCodRobot(), robot);
-    }
-
     @Override
-    public void comunicaTransporte() {
+    public void comunicaTransporte(Localizacao destino, Palete palete) {
         Robot r = robotDisponivel();
-        List<Localizacao> l = new ArrayList<>();
-        // Falta calcular rota
+        r.setDisponivel(0);
+        r.setPalete(palete);
+        this.robots.put(r.getCodRobot(), r);
+        List<Localizacao> l;
+
+        l = mapa.calculaRotas(r.getLocalizacao(), destino);
+
         comunicaRota(r, l);
     }
 
     private void comunicaRota(Robot robot, List<Localizacao> l) {
         robot.setRota(l);
-        //robot.setDisponivel(0);
-        this.robots.replace(robot.getCodRobot(), robot); // Atualiza o robot
     }
 
     @Override
-    public void notificarRecolha(Robot robot) {
-        robot.setDisponivel(0);
+    public void notificarRecolha(Robot robot) { // temos de atualizar localizacao
+        robot.setLocalizacao(robot.getPalete().getLocalizacao());
         this.robots.put(robot.getCodRobot(), robot);
-        RobotDAO.getInstance().replace(robot.getCodRobot(), robot);
+        this.robots.put(robot.getCodRobot(), robot);
     }
 
     @Override
-    public void notificarEntrega(Robot robot) {
+    public void notificarEntrega(Robot robot, Localizacao localizacao) {// temos de atualizar localizacao
         robot.setDisponivel(1);
-        this.robots.replace(robot.getCodRobot(), robot);
-        RobotDAO.getInstance().put(robot.getCodRobot(), robot);
+        robot.setPalete(null);
+        robot.setLocalizacao(localizacao);
+        this.robots.put(robot.getCodRobot(), robot);
     }
 
     @Override
@@ -102,7 +98,7 @@ public class Transporte implements ITransporte{
 
     public void atualizaLocalizacaoRobot(Robot robot, Localizacao localizacao) {
         this.robots.get(robot.getCodRobot()).setLocalizacao(localizacao);
-        RobotDAO.getInstance().put(robot.getCodRobot(), robot);
+        this.robots.put(robot.getCodRobot(), robot);
     }
 
     @Override

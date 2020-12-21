@@ -1,5 +1,8 @@
 package Business.Transporte;
 
+import Business.Armazenamento.Palete;
+import Business.Localizacao;
+
 public interface ITransporte
 {
     Robot getRobot(String codRobot);
@@ -8,13 +11,13 @@ public interface ITransporte
     Robot robotDisponivel();
 
     //Sistema comunica ordem de transporte
-    void comunicaTransporte();
+    void comunicaTransporte(Localizacao destino, Palete palete);
 
     // Notificar recolha de paletes (Actor: Robot)
     void notificarRecolha(Robot robot);
 
     // Notificar entrega de paletes (Actor: Robot)
-    void notificarEntrega(Robot robot);
+    void notificarEntrega(Robot robot, Localizacao localizacao);
 
     boolean haRobots();
 }

@@ -1,5 +1,6 @@
 package Business.Transporte;
 
+import Business.Armazenamento.Palete;
 import Business.Localizacao;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ public class Robot {
     private int disponivel;
     private Localizacao localizacao;
     private List<Localizacao> rota;
+    private Palete palete;
 
     Robot()
     {
@@ -17,7 +19,7 @@ public class Robot {
         this.disponivel = 1;
         this.localizacao = new Localizacao();
         this.rota = new ArrayList<>();
-
+        this.palete = null;
     }
 
     Robot (Robot r)
@@ -26,6 +28,7 @@ public class Robot {
         this.disponivel = r.getDisponivel();
         this.localizacao = r.getLocalizacao();
         this.rota = r.getRota();
+        this.palete = r.getPalete();
     }
 
     Robot(String c, int b, Localizacao local)
@@ -36,11 +39,12 @@ public class Robot {
         this.rota = new ArrayList<>();
     }
 
-    public Robot(String c, int b, String local)
+    public Robot(String c, int b, String local, Palete palete)
     {
         this.codRobot = c;
         this.disponivel = b;
         this.localizacao = new Localizacao(local);
+        this.palete = palete;
     }
 
 
@@ -82,9 +86,28 @@ public class Robot {
         this.rota = rota;
     }
 
+    public Palete getPalete() {
+        return palete;
+    }
+
+    public void setPalete(Palete palete) {
+        this.palete = palete;
+    }
+
     @Override
     protected Object clone()  {
         return new Robot (this);
+    }
+
+    @Override
+    public String toString() {
+        return "Robot{" +
+                "codRobot='" + codRobot + '\'' +
+                ", disponivel=" + disponivel +
+                ", localizacao=" + localizacao +
+                ", rota=" + rota +
+                ", palete=" + palete +
+                '}';
     }
 }
 
