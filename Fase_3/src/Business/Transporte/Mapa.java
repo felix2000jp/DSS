@@ -122,7 +122,7 @@ public class Mapa
         this.mapa.put(new Localizacao(11), saida);
     }
 
- /*   private class SortbyDest implements Comparator<Aresta> {
+    private class SortbyDest implements Comparator<Aresta> {
         public int compare(Aresta a, Aresta b){
             return b.getDestino() - a.getDestino();
         }
@@ -158,14 +158,24 @@ public class Mapa
                 Collections.sort(verticeAtual, new SortbyDest());
                 proxAresta = verticeAtual.get(0);
             } else if (posAtual > destino) {
-                Collections.reverse(verticeAtual, new SortbyDest());
-                proxAresta = verticeAtual.get(0);
+                Collections.sort(verticeAtual, new SortbyDest());
+                proxAresta = verticeAtual.get(1);
             }
             res.add(proxAresta);
             posAtual = proxAresta.getDestino();
         }
         return res;
-    }*/
+    }
+
+    public double calculaPesoRota (List<Aresta> rota) {
+        double res = 0;
+
+        for (Aresta a : rota) {
+            res += a.getPeso();
+        }
+
+        return res;
+    }
 
     @Override
     protected Object clone()
