@@ -75,6 +75,11 @@ public class Armazenamento implements IArmazenamento {
         this.prateleiras.remove(prateleira.getCodPrateleira());
     }
 
+    @Override
+    public Palete getPalete(String codPalete) {
+        return this.paletes.get(codPalete);
+    }
+
     public Localizacao localizaPalete (Palete palete)
     {
         return paletes.get(palete.getCodPalete()).getLocalizacao();
@@ -117,7 +122,12 @@ public class Armazenamento implements IArmazenamento {
 
         return localizacoes;
     }
-    
+
+    @Override
+    public boolean haPaletes() {
+        return this.paletes.size() > 0;
+    }
+
     public Localizacao destinoPalete (Palete palete)
     {
         Localizacao entrada = new Localizacao(0);

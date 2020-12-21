@@ -1,9 +1,9 @@
 package Business.Transporte;
 
-import Business.Localizacao;
-
 public interface ITransporte
 {
+    Robot getRobot(String codRobot);
+
     //Retorna o primeiro robot que encontrar que está disponível
     Robot robotDisponivel();
 
@@ -15,4 +15,6 @@ public interface ITransporte
 
     // Notificar entrega de paletes (Actor: Robot)
     void notificarEntrega(Robot robot);
+
+    boolean haRobots();
 }

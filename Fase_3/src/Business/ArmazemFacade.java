@@ -2,6 +2,7 @@ package Business;
 
 import Business.Armazenamento.Armazenamento;
 import Business.Armazenamento.IArmazenamento;
+import Business.Armazenamento.Palete;
 import Business.Transporte.ITransporte;
 import Business.Transporte.Robot;
 import Business.Transporte.Transporte;
@@ -13,7 +14,7 @@ public class ArmazemFacade implements IArmazemFacade{
     private IArmazenamento armazenamento;
     private ITransporte transporte;
 
-    ArmazemFacade() {
+    public ArmazemFacade() {
         this.armazenamento = new Armazenamento();
         this.transporte = new Transporte();
     }
@@ -26,7 +27,7 @@ public class ArmazemFacade implements IArmazemFacade{
     }
 
     @Override
-    public void comunicaTransporte()
+    public void comunicaTransporte(String codPalete)
     {
         transporte.comunicaTransporte();
     }
@@ -49,5 +50,23 @@ public class ArmazemFacade implements IArmazemFacade{
     public Map<String, Localizacao> consultarListagemLocalizacoes()
     {
         return armazenamento.determinaListaLocalizacao();
+    }
+
+    public boolean haPaletes(){
+        return armazenamento.haPaletes();
+    }
+
+    public boolean haRobots(){
+        return transporte.haRobots();
+    }
+
+    @Override
+    public Robot getRobot(String codRobot) {
+        return this.transporte.getRobot(codRobot);
+    }
+
+    @Override
+    public Palete getPalete(String codPalete) {
+        return this.armazenamento.getPalete(codPalete);
     }
 }

@@ -5,14 +5,19 @@ import Business.Localizacao;
 import Data.PaleteDAO;
 import Data.PrateleiraDAO;
 import Data.RobotDAO;
+import Ui.TextUI;
 
 import java.util.Map;
 
 public class Main {
 
     public static void main(String[] args) {
-
-        Armazenamento arma = new Armazenamento();
+        try {
+            new TextUI().run();
+        } catch (Exception e) {
+            System.out.println("Não foi possível arrancar: " + e.getMessage());
+        }
+       /* Armazenamento arma = new Armazenamento();
         Localizacao destino0 = new Localizacao(0);
         Localizacao destino1 = new Localizacao(1);
         Localizacao destino2 = new Localizacao(2);
@@ -28,7 +33,7 @@ public class Main {
         Palete palete1 = new Palete("A111", "Gajas", null, destino0, 1);
         Palete palete2 = new Palete("A112", "Droga", null, destino1, 1);
         Palete palete3 = new Palete("A113", "Vinho", null, destino2, 1);
-        Palete palete4 = new Palete("A114", "Barco", null, destino3, 1);
+        Palete palete4 = new Palete("A114", "Barco", null, destino3, 1);/
 
         /*
 
@@ -65,7 +70,7 @@ public class Main {
 
  */
 
-        arma.atualizaLocalizacaoPalete(palete1, destino1);
+       /* arma.atualizaLocalizacaoPalete(palete1, destino1);
         arma.atualizaLocalizacaoPalete(palete2, destino2);
         arma.atualizaLocalizacaoPalete(palete3, destino3);
         arma.atualizaLocalizacaoPalete(palete4, destino4);
@@ -73,6 +78,7 @@ public class Main {
         //Map<String, Localizacao> list = arma.determinaListaLocalizacao();
 
         //System.out.println(arma.destinoPalete(palete1));
-    }
+    }*/
 
+    }
 }

@@ -44,6 +44,11 @@ public class Transporte implements ITransporte{
         this.mapa = mapa;
     }
 
+    @Override
+    public Robot getRobot(String codRobot) {
+        return this.robots.get(codRobot);
+    }
+
     // Vai ao map de robots e devolve o primeiro disponivel
     public Robot robotDisponivel() { // Tem de ser alterado
         for (Robot robot : RobotDAO.getInstance().values()) {
@@ -87,6 +92,11 @@ public class Transporte implements ITransporte{
         robot.setDisponivel(1);
         this.robots.replace(robot.getCodRobot(), robot);
         RobotDAO.getInstance().put(robot.getCodRobot(), robot);
+    }
+
+    @Override
+    public boolean haRobots() {
+        return this.robots.size() > 0;
     }
 
     public void atualizaLocalizacaoRobot(Robot robot, Localizacao localizacao) {

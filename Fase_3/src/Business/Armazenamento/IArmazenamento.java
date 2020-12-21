@@ -6,6 +6,8 @@ import java.util.Map;
 
 public interface IArmazenamento
 {
+    Palete getPalete(String codPalete);
+
     // Dado um codigo de Palete dá a localização.
     Localizacao localizaPalete (Palete palete);
 
@@ -17,5 +19,7 @@ public interface IArmazenamento
 
     // Cria um mapa com os códigos das paletes e a respetiva localização.
     Map<String, Localizacao> determinaListaLocalizacao();
+
+    boolean haPaletes();
 
 }
