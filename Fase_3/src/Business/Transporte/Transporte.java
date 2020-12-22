@@ -71,9 +71,12 @@ public class Transporte implements ITransporte{
         r.setDisponivel(0);
         r.setPalete(palete);
         this.robots.put(r.getCodRobot(), r);
-        List<Localizacao> l;
+        List<Localizacao> l = new ArrayList<>();
+        l.addAll( mapa.calculaRotas(r.getLocalizacao(), palete.getLocalizacao()) );
+        l.addAll( mapa.calculaRotas(palete.getLocalizacao() , destino) );
 
-        l = mapa.calculaRotas(r.getLocalizacao(), destino);
+        for(Localizacao ls : l )
+            System.out.println(ls);
 
         comunicaRota(r, l);
     }
@@ -83,18 +86,25 @@ public class Transporte implements ITransporte{
     }
 
     @Override
-    public void notificarRecolha(Robot robot) { // temos de atualizar localizacao
+    public void notificarRecolha(Robot robot) {
         robot.setLocalizacao(robot.getPalete().getLocalizacao());
         this.robots.put(robot.getCodRobot(), robot);
         this.robots.put(robot.getCodRobot(), robot);
     }
 
     @Override
-    public void notificarEntrega(Robot robot, Localizacao localizacao) {// temos de atualizar localizacao
+    public void notificarEntrega(Robot robot, Localizacao localizacao) {
         robot.setDisponivel(1);
         robot.setPalete(null);
         robot.setLocalizacao(localizacao);
         this.robots.put(robot.getCodRobot(), robot);
+    }
+
+    @Override
+    public Localizacao destinhoFinal(Robot robot)
+    {
+        System.out.println( robot.getRota().get( robot.getRota().size() - 2 ) );
+        return robot.getRota().get( robot.getRota().size() - 1);
     }
 
     @Override

@@ -20,4 +20,6 @@ public interface ITransporte
     void notificarEntrega(Robot robot, Localizacao localizacao);
 
     boolean haRobots();
+
+    Localizacao destinhoFinal(Robot robot);
 }

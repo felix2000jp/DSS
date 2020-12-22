@@ -25,7 +25,8 @@ public class TextUI
         System.out.println("Até breve...");
     }
 
-    private void menuPrincipal() {
+    private void menuPrincipal()
+    {
         Menu menu = new Menu(new String[]
                 {
                 "Operacoes sobre Robots",
@@ -84,10 +85,8 @@ public class TextUI
     {
         try
         {
-            System.out.print("Codigo do robot: ");
-            String cod = scan.nextLine();
             Robot r;
-            if ((r = this.model.getRobot(cod)) != null)
+            if ((r = this.model.getRobot("Robot1")) != null)
             {
                 this.model.notificarRecolha(r);
                 System.out.println("Palete recolhida");
@@ -106,10 +105,8 @@ public class TextUI
     private void notificarEntrega()
     {
         try {
-            System.out.print("Codigo do robot: ");
-            String cod = scan.nextLine();
             Robot r;
-            if ((r = this.model.getRobot(cod)) != null)
+            if ((r = this.model.getRobot("Robot1")) != null)
             {
                 this.model.notificarEntrega(r);
                 System.out.println("Palete entregue");

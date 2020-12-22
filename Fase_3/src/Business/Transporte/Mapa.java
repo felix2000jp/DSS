@@ -137,32 +137,31 @@ public class Mapa
         Aresta proxAresta = null;
         res.add(start1);
 
+        System.out.println(start1);
+        System.out.println(destino1);
+        System.out.println("-------");
+
         while (destino != posAtual) {
             verticeAtual = this.mapa.get(posAtual);
-            if ((posAtual == 1 || posAtual == 11) && destino < 6) {
-                Collections.sort(verticeAtual, new SortbyDest());
+            Collections.sort(verticeAtual, new SortbyDest());
+            if (posAtual == 1 && destino == 0){
+                proxAresta = verticeAtual.get(2);
+            } else if ((posAtual == 1 || posAtual == 11) && destino < 6) {
                 proxAresta = verticeAtual.get(1);
             } else if ((posAtual == 1 || posAtual == 11) && destino > 6) {
-                Collections.sort(verticeAtual, new SortbyDest());
                 proxAresta = verticeAtual.get(0);
             } else if ((posAtual == 2 || posAtual == 3) && destino >= 6 && destino <= 8) {
-                Collections.sort(verticeAtual, new SortbyDest());
                 proxAresta = verticeAtual.get(1);
             } else if ((posAtual == 8 || posAtual == 9) && destino >= 3 && destino <= 5) {
-                Collections.sort(verticeAtual, new SortbyDest());
                 proxAresta = verticeAtual.get(0);
             } else if (posAtual == 4 && destino == 6) {
-                Collections.sort(verticeAtual, new SortbyDest());
                 proxAresta = verticeAtual.get(1);
             } else if (posAtual == 7 && destino == 5) {
-                Collections.sort(verticeAtual, new SortbyDest());
                 proxAresta = verticeAtual.get(0);
             } else if (posAtual < destino) {
-                Collections.sort(verticeAtual, new SortbyDest());
                 proxAresta = verticeAtual.get(0);
             } else if (posAtual > destino) {
-                Collections.sort(verticeAtual, new SortbyDest());
-                proxAresta = verticeAtual.get(0);
+                proxAresta = verticeAtual.get(1);
             }
             res.add(new Localizacao(proxAresta.getDestino()));
             posAtual = proxAresta.getDestino();

@@ -47,11 +47,10 @@ public class ArmazemFacade implements IArmazemFacade{
     public void notificarEntrega(Robot robot)
     {
         Palete p = this.armazenamento.getPalete(robot.getPalete().getCodPalete());
-        Localizacao fin = robot.getLocalizacao();
-        fin = this.armazenamento.destinoPalete(fin);
+        System.out.println(p);
+        Localizacao fin = this.transporte.destinhoFinal(robot);
 
         this.transporte.notificarEntrega(robot,fin);
-
         this.armazenamento.atualizaLocalizacaoPalete(p, fin);
     }
 

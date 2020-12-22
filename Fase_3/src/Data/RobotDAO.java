@@ -26,10 +26,10 @@ public class RobotDAO implements Map<String, Robot> {
             sql = "CREATE TABLE IF NOT EXISTS localizacoes (Localizacao varchar(45) NOT NULL PRIMARY KEY)";
             stm.execute(sql);
             sql = "CREATE TABLE IF NOT EXISTS robots (" +
-                    "CodRobot varchar(20) NOT NULL PRIMARY KEY, " +
-                    "Disponibilidade varchar(45) DEFAULT NULL, " +
-                    "Localizacao varchar(45), foreign key(Localizacao) references localizacoes(Localizacao)," +
-                    "Palete varchar(45), foreign key(Palete) references  paletes(CodPalete))";
+                  "CodRobot varchar(20) NOT NULL PRIMARY KEY, " +
+                  "Disponibilidade varchar(45) DEFAULT NULL, " +
+                  "Localizacao varchar(45), foreign key(Localizacao) references localizacoes(Localizacao)," +
+                  "Palete varchar(45), foreign key(Palete) references  paletes(CodPalete))";
             stm.execute(sql);
         } catch (SQLException e) {
             // Erro a criar tabela...
