@@ -141,16 +141,25 @@ public class Armazenamento implements IArmazenamento {
         Localizacao entrada = new Localizacao(0);
         Localizacao saida = new Localizacao(11);
 
-        if ( palete.compareTo(entrada) != 0 )
-        {
-            for (Prateleira prateleira : prateleiras.values())
-            {
-                if( prateleira.getPalete() == null )
-                    return prateleira.getLocalizacao();
+        Localizacao res = null;
+        if(palete.compareTo(entrada) != 0){
+            Iterator<Prateleira> it = this.prateleiras.values().iterator();
+
+            while (it.hasNext() && res == null){
+                Prateleira p = it.next();
+
+                if(p.getPalete() == null){
+                    res = p.getLocalizacao();
+                }
             }
-            return entrada;
+
+            if(res == null)
+                res = entrada;
+        }else {
+            res = saida;
         }
-        else return saida;
+
+        return res;
     }
 
     @Override
@@ -158,5 +167,17 @@ public class Armazenamento implements IArmazenamento {
     {
         palete.setNecessidadeTransporte(1);
         this.paletes.put(palete.getCodPalete(),palete);
+    }
+
+    @Override
+    public boolean haPrateleirasVazias() {
+        boolean b = false;
+        Iterator<Prateleira> pr = this.prateleiras.values().iterator();
+        while (pr.hasNext() && !b){
+            if(pr.next().getPalete() == null)
+                b = true;
+        }
+
+        return b;
     }
 }

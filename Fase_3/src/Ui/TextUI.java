@@ -136,6 +136,7 @@ public class TextUI
         });
 
         // Registar pré-condições das transições
+        menu.setPreCondition(1, ()->this.model.haPrateleirasVazias());
         menu.setPreCondition(2, ()->this.model.haPaletes());
 
         // Registar os handlers
@@ -145,11 +146,10 @@ public class TextUI
         menu.run();
     }
 
-    private void comunicaCodigoQR() {
+    private void comunicaCodigoQR() { // antigo regista palete
         try
         {
-            System.out.println();
-            System.out.println( this.model.comunicaCodigoQR() );
+            System.out.println("\n" + this.model.comunicaCodigoQR() );
             System.out.println("Criada com Sucesso");
         }
         catch (NullPointerException e)
@@ -158,8 +158,7 @@ public class TextUI
         }
     }
 
-    private void consultarListagemLocalizacoes()
-    {
+    private void consultarListagemLocalizacoes() { // antigo determinar lista localizacao
         Map<String, Localizacao> locals = this.model.consultarListagemLocalizacoes();
 
         System.out.println();

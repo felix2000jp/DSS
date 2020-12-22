@@ -13,6 +13,7 @@ public class Transporte implements ITransporte{
     public Transporte() {
         this.robots = RobotDAO.getInstance();
         this.mapa = new Mapa();
+
         if(this.robots.isEmpty()){
             povoamento();
         }
@@ -50,11 +51,16 @@ public class Transporte implements ITransporte{
 
     public Robot robotDisponivel()
     {
-        for (Robot robot : this.robots.values()) {
-            System.out.println(robot);
-            if (robot.getDisponivel() == 1) return robot;
+        Robot res = null;
+        Robot aux;
+        Iterator<Robot> it = this.robots.values().iterator();
+        while (it.hasNext() && res == null){
+            aux = it.next();
+            if(aux.getDisponivel() == 1)
+                res = aux;
         }
-        return null;
+
+        return res;
     }
 
     @Override
@@ -77,7 +83,6 @@ public class Transporte implements ITransporte{
     public void notificarRecolha(Robot robot)
     {
         robot.setLocalizacao(robot.getPalete().getLocalizacao());
-        this.robots.put(robot.getCodRobot(), robot);
         this.robots.put(robot.getCodRobot(), robot);
     }
 

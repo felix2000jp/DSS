@@ -18,5 +18,6 @@ public interface IArmazenamento
     Palete adicionaPalete();
     Localizacao destinoPalete (Localizacao palete);
     void paleteNecessitaTransporte(Palete palete);
+    boolean haPrateleirasVazias();
 
 }

@@ -78,4 +78,9 @@ public class ArmazemFacade implements IArmazemFacade{
     public Palete getPalete(String codPalete) {
         return this.armazenamento.getPalete(codPalete);
     }
+
+    @Override
+    public boolean haPrateleirasVazias() {
+        return this.armazenamento.haPrateleirasVazias();
+    }
 }

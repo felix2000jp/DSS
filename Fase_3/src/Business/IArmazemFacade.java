@@ -18,6 +18,7 @@ public interface IArmazemFacade {
     boolean haRobots();
     Robot getRobot(String codRobot);
     Palete getPalete(String codPalete);
+    boolean haPrateleirasVazias();
 
 
 

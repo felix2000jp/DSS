@@ -3,9 +3,6 @@ package Business.Transporte;
 import Business.Armazenamento.Palete;
 import Business.Localizacao;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Robot {
     private String codRobot;
     private Palete palete;
@@ -36,7 +33,7 @@ public class Robot {
         this.codRobot = c;
         this.disponivel = b;
         this.localizacao = local;
-        this.destino = null;
+        this.destino = new Localizacao(-1);
         this.palete = null;
     }
 
