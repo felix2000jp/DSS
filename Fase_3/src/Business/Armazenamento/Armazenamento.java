@@ -17,7 +17,12 @@ public class Armazenamento implements IArmazenamento {
     {
         this.paletes = PaleteDAO.getInstance();
         this.prateleiras = PrateleiraDAO.getInstance();
+        if(this.prateleiras.isEmpty()){
+            povoamento();
+        }
+    }
 
+    private void povoamento(){
         Prateleira prateleiraA = new Prateleira("A", null, 1);
         Prateleira prateleiraB = new Prateleira("B", null, 2);
         Prateleira prateleiraC = new Prateleira("C", null, 3);
@@ -40,7 +45,6 @@ public class Armazenamento implements IArmazenamento {
         this.prateleiras.put(prateleiraH.getCodPrateleira(), prateleiraH);
         this.prateleiras.put(prateleiraI.getCodPrateleira(), prateleiraI);
         this.prateleiras.put(prateleiraJ.getCodPrateleira(), prateleiraJ);
-
     }
 
     public Collection<Palete> getPaletes()

@@ -9,18 +9,18 @@ public class Mapa
 {
     private Map<Localizacao, List<Aresta>> mapa;
 
-    Mapa()
-    {
+    Mapa() {
         this.mapa = MapaDAO.getInstance();
+        if(this.mapa.isEmpty()){
+            povoamento();
+        }
     }
 
-    Mapa(Mapa a)
-    {
+    Mapa(Mapa a) {
     this.mapa = a.getMapa();
     }
 
-    Mapa(Map<Localizacao, List<Aresta>> mapa)
-    {
+    Mapa(Map<Localizacao, List<Aresta>> mapa) {
         this.mapa = mapa;
     }
 
@@ -32,7 +32,7 @@ public class Mapa
         this.mapa = mapa;
     }
 
-    public void povoamento()
+    private void povoamento()
     {
         Aresta e_p1 = new Aresta(0, 1 , 2);
         Aresta p1_e = new Aresta(1, 0 , 2);

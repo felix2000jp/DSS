@@ -13,10 +13,10 @@ public class Transporte implements ITransporte{
     public Transporte() {
         this.robots = RobotDAO.getInstance();
         this.mapa = new Mapa();
-        this.mapa.povoamento();
-        Robot robot1 = new Robot("Robot1", 1, new Localizacao(0));
-        this.robots.put("Robot1", robot1);
-        RobotDAO.getInstance().put(robot1.getCodRobot(), robot1);
+        if(this.robots.isEmpty()){
+            povoamento();
+        }
+
     }
 
     Transporte(Transporte t)
@@ -28,6 +28,12 @@ public class Transporte implements ITransporte{
     Transporte(Map<String, Robot> rs, Mapa m) {
         this.robots = rs;
         this.mapa = m;
+    }
+
+    private void povoamento(){
+        Robot robot1 = new Robot("Robot1", 1, new Localizacao(0));
+        this.robots.put("Robot1", robot1);
+        RobotDAO.getInstance().put(robot1.getCodRobot(), robot1);
     }
 
     public Map<String, Robot> getRobots() {
