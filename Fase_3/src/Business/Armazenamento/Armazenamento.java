@@ -4,10 +4,7 @@ import Business.Localizacao;
 import Data.PaleteDAO;
 import Data.PrateleiraDAO;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Armazenamento implements IArmazenamento {
     private Map<String , Palete> paletes;         // Key --> codPalete         Value --> Palete
@@ -57,9 +54,42 @@ public class Armazenamento implements IArmazenamento {
         return new ArrayList<>(this.prateleiras.values());
     }
 
-    public void adicionaPalete(Palete palete)
+    public Palete adicionaPalete()
     {
-        this.paletes.put(palete.getCodPalete(),palete);
+        Random rand = new Random();
+        int cod = rand.nextInt(100);
+        String codPalete = "P" + cod;
+        List<Palete> paletes = new ArrayList<>();
+        int ciclo = 1;
+
+        while(ciclo == 1)
+        {
+            if ( this.paletes.get(codPalete) == null ) ciclo = 0;
+            else
+            {
+                cod = rand.nextInt(100);
+                codPalete = "P" + cod;
+            }
+        }
+
+
+        String conteudo = "";
+
+        if( (cod % 10) == 0 ) conteudo = "Champoo";
+        if( (cod % 10) == 1 ) conteudo = "Maçãs";
+        if( (cod % 10) == 2 ) conteudo = "Farinha";
+        if( (cod % 10) == 3 ) conteudo = "Sementes";
+        if( (cod % 10) == 4 ) conteudo = "Bacalhau";
+        if( (cod % 10) == 5 ) conteudo = "Peito de Frango";
+        if( (cod % 10) == 6 ) conteudo = "Bombons";
+        if( (cod % 10) == 7 ) conteudo = "Chinelos";
+        if( (cod % 10) == 8 ) conteudo = "Fato de Pai Natal";
+        if( (cod % 10) == 9 ) conteudo = "Fato de Mãe Natal";
+
+        Palete p = new Palete(codPalete, conteudo, null, 0, 1);
+        this.paletes.put(p.getCodPalete(),p);
+
+        return p;
     }
 
     public void adicinaPrateleira(Prateleira prateleira)
@@ -145,5 +175,11 @@ public class Armazenamento implements IArmazenamento {
             return entrada;
         }
         else return saida;
+    }
+
+    public void paleteNecessitaTransporte(Palete palete)
+    {
+        palete.setNecessidadeTransporte(1);
+        this.paletes.put(palete.getCodPalete(),palete);
     }
 }

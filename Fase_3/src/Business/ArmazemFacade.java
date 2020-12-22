@@ -22,10 +22,9 @@ public class ArmazemFacade implements IArmazemFacade{
 
 
     @Override
-    public void comunicaCodigoQR(String codPalete, String conteudo)
+    public Palete comunicaCodigoQR()
     {
-        Palete palete = new Palete(codPalete, conteudo, null, 0, 1);
-        this.armazenamento.adicionaPalete(palete);
+        return this.armazenamento.adicionaPalete();
     }
 
     @Override
@@ -34,6 +33,7 @@ public class ArmazemFacade implements IArmazemFacade{
         Palete p = this.armazenamento.getPalete(codPalete);
         Localizacao local = p.getLocalizacao();
         Localizacao destino = this.armazenamento.destinoPalete(local);
+        this.armazenamento.paleteNecessitaTransporte(p);
         this.transporte.comunicaTransporte(destino, p);
     }
 

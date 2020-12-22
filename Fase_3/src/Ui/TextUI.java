@@ -143,14 +143,9 @@ public class TextUI
     private void comunicaCodigoQR() {
         try
         {
-            System.out.print("Codigo do Palete: ");
-            String codPalete = scan.nextLine();
-            System.out.print("Conteudo da Palete: ");
-            String conteudo = scan.nextLine();
-
-            this.model.comunicaCodigoQR(codPalete,conteudo);
-
-            System.out.println("Palete Criada com Sucesso");
+            System.out.println("Palete");
+            System.out.println( this.model.comunicaCodigoQR() );
+            System.out.println("Criada com Sucesso");
         }
         catch (NullPointerException e)
         {

@@ -7,8 +7,8 @@ import java.util.Map;
 
 public interface IArmazemFacade {
 
-    void comunicaCodigoQR(String CodPalete, String conteudo);
-    void comunicaTransporte (String codPalete); // Falta parte do armazenamento
+    Palete comunicaCodigoQR();
+    void comunicaTransporte (String codPalete);
     void notificarRecolha(Robot robot);
     void notificarEntrega(Robot robot);
     Map<String, Localizacao> consultarListagemLocalizacoes ();
