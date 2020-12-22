@@ -8,17 +8,17 @@ import java.util.List;
 
 public class Robot {
     private String codRobot;
-    private int disponivel;
-    private Localizacao localizacao;
-    private List<Localizacao> rota;
     private Palete palete;
+    private Localizacao localizacao;
+    private Localizacao destino;
+    private int disponivel;
 
     Robot()
     {
         this.codRobot = "";
         this.disponivel = 1;
         this.localizacao = new Localizacao();
-        this.rota = new ArrayList<>();
+        this.destino = new Localizacao();
         this.palete = null;
     }
 
@@ -27,7 +27,7 @@ public class Robot {
         this.codRobot = r.getCodRobot();
         this.disponivel = r.getDisponivel();
         this.localizacao = r.getLocalizacao();
-        this.rota = r.getRota();
+        this.destino = r.getDestino();
         this.palete = r.getPalete();
     }
 
@@ -36,21 +36,22 @@ public class Robot {
         this.codRobot = c;
         this.disponivel = b;
         this.localizacao = local;
-        this.rota = new ArrayList<>();
+        this.destino = null;
+        this.palete = null;
     }
 
-    public Robot(String c, int b, String local, Palete palete)
+    public Robot(String c, int b, String local, String destino , Palete palete)
     {
         this.codRobot = c;
         this.disponivel = b;
         this.localizacao = new Localizacao(local);
+        this.destino = new Localizacao(destino);
         this.palete = palete;
     }
 
-
     public String getCodRobot()
     {
-        return codRobot;
+        return this.codRobot;
     }
 
     public void setCodRobot(String codRobot)
@@ -60,7 +61,7 @@ public class Robot {
 
     public Localizacao getLocalizacao()
     {
-        return localizacao;
+        return this.localizacao;
     }
 
     public void setLocalizacao(Localizacao localizacao)
@@ -70,7 +71,7 @@ public class Robot {
 
     public int getDisponivel()
     {
-        return disponivel;
+        return this.disponivel;
     }
 
     public void setDisponivel(int disponivel)
@@ -78,16 +79,16 @@ public class Robot {
         this.disponivel = disponivel;
     }
 
-    public List<Localizacao> getRota() {
-        return rota;
+    public Localizacao getDestino() {
+        return this.destino;
     }
 
-    public void setRota(List<Localizacao> rota) {
-        this.rota = rota;
+    public void setDestino(Localizacao destino) {
+        this.destino = destino;
     }
 
     public Palete getPalete() {
-        return palete;
+        return this.palete;
     }
 
     public void setPalete(Palete palete) {
@@ -101,13 +102,11 @@ public class Robot {
 
     @Override
     public String toString() {
-        return "Robot{" +
-                "codRobot='" + codRobot + '\'' +
-                ", disponivel=" + disponivel +
-                ", localizacao=" + localizacao +
-                ", rota=" + rota +
-                ", palete=" + palete +
-                '}';
+        return "Robot:        " + this.codRobot + "\n" +
+                "Disponivel:  " + this.disponivel + "\n" +
+                "Localizacao: " + this.localizacao + "\n" +
+                "Destino:     " + this.destino + "\n" +
+                "Palete:      " + this.palete;
     }
 }
 

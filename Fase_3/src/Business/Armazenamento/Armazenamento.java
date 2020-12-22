@@ -14,7 +14,8 @@ public class Armazenamento implements IArmazenamento {
     {
         this.paletes = PaleteDAO.getInstance();
         this.prateleiras = PrateleiraDAO.getInstance();
-        if(this.prateleiras.isEmpty()){
+        if(this.prateleiras.isEmpty())
+        {
             povoamento();
         }
     }
@@ -54,12 +55,12 @@ public class Armazenamento implements IArmazenamento {
         return new ArrayList<>(this.prateleiras.values());
     }
 
+    @Override
     public Palete adicionaPalete()
     {
         Random rand = new Random();
         int cod = rand.nextInt(100);
         String codPalete = "P" + cod;
-        List<Palete> paletes = new ArrayList<>();
         int ciclo = 1;
 
         while(ciclo == 1)
@@ -92,31 +93,13 @@ public class Armazenamento implements IArmazenamento {
         return p;
     }
 
-    public void adicinaPrateleira(Prateleira prateleira)
-    {
-        this.prateleiras.put(prateleira.getCodPrateleira(),prateleira);
-    }
-
-    public void removePalete(Palete palete)
-    {
-        this.paletes.remove(palete.getCodPalete());
-    }
-
-    public void removePrateleira(Prateleira prateleira)
-    {
-        this.prateleiras.remove(prateleira.getCodPrateleira());
-    }
-
     @Override
-    public Palete getPalete(String codPalete) {
+    public Palete getPalete(String codPalete)
+    {
         return this.paletes.get(codPalete);
     }
 
-    public Localizacao localizaPalete (Palete palete)
-    {
-        return paletes.get(palete.getCodPalete()).getLocalizacao();
-    }
-
+    @Override
     public void atualizaLocalizacaoPalete (Palete palete, Localizacao localizacao)
     {
         this.paletes.remove(palete.getCodPalete());
@@ -133,15 +116,6 @@ public class Armazenamento implements IArmazenamento {
             }
         }
     }
-    
-    public boolean disponivelPaletes(Palete palete)
-    {
-        boolean disponivel = true;
-
-        if( paletes.get(palete.getCodPalete()) == null ) disponivel = false;
-
-        return disponivel;
-    }
 
     public Map<String, Localizacao> determinaListaLocalizacao()
     {
@@ -156,10 +130,12 @@ public class Armazenamento implements IArmazenamento {
     }
 
     @Override
-    public boolean haPaletes() {
+    public boolean haPaletes()
+    {
         return this.paletes.size() > 0;
     }
 
+    @Override
     public Localizacao destinoPalete (Localizacao palete)
     {
         Localizacao entrada = new Localizacao(0);
@@ -177,6 +153,7 @@ public class Armazenamento implements IArmazenamento {
         else return saida;
     }
 
+    @Override
     public void paleteNecessitaTransporte(Palete palete)
     {
         palete.setNecessidadeTransporte(1);

@@ -137,10 +137,6 @@ public class Mapa
         Aresta proxAresta = null;
         res.add(start1);
 
-        System.out.println(start1);
-        System.out.println(destino1);
-        System.out.println("-------");
-
         while (destino != posAtual) {
             verticeAtual = this.mapa.get(posAtual);
             Collections.sort(verticeAtual, new SortbyDest());
@@ -170,7 +166,8 @@ public class Mapa
         return res;
     }
 
-    public double calculaPesoRota (List<Aresta> rota) {
+    public double calculaPesoRota (List<Aresta> rota)
+    {
         double res = 0;
 
         for (Aresta a : rota) {

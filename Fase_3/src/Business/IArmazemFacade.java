@@ -3,12 +3,13 @@ package Business;
 import Business.Armazenamento.Palete;
 import Business.Transporte.Robot;
 
+import java.util.List;
 import java.util.Map;
 
 public interface IArmazemFacade {
 
     Palete comunicaCodigoQR();
-    void comunicaTransporte (String codPalete);
+    List<Localizacao> comunicaTransporte (String codPalete);
     void notificarRecolha(Robot robot);
     void notificarEntrega(Robot robot);
     Map<String, Localizacao> consultarListagemLocalizacoes ();

@@ -7,6 +7,7 @@ import Business.Transporte.ITransporte;
 import Business.Transporte.Robot;
 import Business.Transporte.Transporte;
 
+import java.util.List;
 import java.util.Map;
 
 public class ArmazemFacade implements IArmazemFacade{
@@ -28,13 +29,13 @@ public class ArmazemFacade implements IArmazemFacade{
     }
 
     @Override
-    public void comunicaTransporte(String codPalete)
+    public List<Localizacao> comunicaTransporte(String codPalete)
     {
         Palete p = this.armazenamento.getPalete(codPalete);
         Localizacao local = p.getLocalizacao();
         Localizacao destino = this.armazenamento.destinoPalete(local);
         this.armazenamento.paleteNecessitaTransporte(p);
-        this.transporte.comunicaTransporte(destino, p);
+        return this.transporte.comunicaTransporte(destino, p);
     }
 
     @Override
@@ -47,8 +48,8 @@ public class ArmazemFacade implements IArmazemFacade{
     public void notificarEntrega(Robot robot)
     {
         Palete p = this.armazenamento.getPalete(robot.getPalete().getCodPalete());
-        System.out.println(p);
         Localizacao fin = this.transporte.destinhoFinal(robot);
+
 
         this.transporte.notificarEntrega(robot,fin);
         this.armazenamento.atualizaLocalizacaoPalete(p, fin);

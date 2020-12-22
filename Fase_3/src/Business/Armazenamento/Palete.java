@@ -116,12 +116,10 @@ public class Palete implements Comparable<Palete>{
 
     @Override
     public String toString() {
-        return "Palete{" +
-                "codPalete='" + codPalete + '\'' +
-                ", conteudo='" + conteudo + '\'' +
-                ", entidadeRegisto='" + entidadeRegisto + '\'' +
-                ", " + localizacao +'\''+ "Necessidade Transporte = " + necessidadeTransporte +
-                '}';
+        return "Palete:      " + this.codPalete + "\n" +
+               "Conteudo:    " + this.conteudo + "\n" +
+               "Entidade:    " + this.entidadeRegisto + "\n" +
+               "Localizacao: " + this.localizacao;
     }
 }
 

@@ -18,8 +18,10 @@ public class Localizacao implements Comparable<Localizacao>{
         this.localizacao = localizacao;
     }
 
-    public Localizacao(String localizacao) {
-        this.localizacao = Integer.parseInt(localizacao);
+    public Localizacao(String localizacao)
+    {
+        if (localizacao == null) this.localizacao = -1;
+        else this.localizacao = Integer.parseInt(localizacao);
     }
 
     public int getLocalizacao()
@@ -47,6 +49,6 @@ public class Localizacao implements Comparable<Localizacao>{
 
     @Override
     public String toString() {
-        return "localizacao = " + localizacao;
+        return String.valueOf(localizacao) ;
     }
 }

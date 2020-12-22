@@ -33,23 +33,14 @@ public class Transporte implements ITransporte{
     private void povoamento(){
         Robot robot1 = new Robot("Robot1", 1, new Localizacao(0));
         this.robots.put("Robot1", robot1);
-        RobotDAO.getInstance().put(robot1.getCodRobot(), robot1);
     }
 
     public Map<String, Robot> getRobots() {
         return new HashMap<>(this.robots);
     }
 
-    public void setRobots(Map<String, Robot> robots) {
-        this.robots = new HashMap<>(robots);
-    }
-
     public Mapa getMapa() {
         return mapa;
-    }
-
-    public void setMapa(Mapa mapa) {
-        this.mapa = mapa;
     }
 
     @Override
@@ -57,36 +48,34 @@ public class Transporte implements ITransporte{
         return this.robots.get(codRobot);
     }
 
-    // Vai ao map de robots e devolve o primeiro disponivel
-    public Robot robotDisponivel() { // Tem de ser alterado
-        for (Robot robot : RobotDAO.getInstance().values()) {
+    public Robot robotDisponivel()
+    {
+        for (Robot robot : this.robots.values()) {
+            System.out.println(robot);
             if (robot.getDisponivel() == 1) return robot;
         }
         return null;
     }
 
     @Override
-    public void comunicaTransporte(Localizacao destino, Palete palete) {
+    public List<Localizacao>  comunicaTransporte(Localizacao destino, Palete palete) {
         Robot r = robotDisponivel();
         r.setDisponivel(0);
         r.setPalete(palete);
+        r.setDestino(destino);
         this.robots.put(r.getCodRobot(), r);
         List<Localizacao> l = new ArrayList<>();
         l.addAll( mapa.calculaRotas(r.getLocalizacao(), palete.getLocalizacao()) );
         l.addAll( mapa.calculaRotas(palete.getLocalizacao() , destino) );
 
-        for(Localizacao ls : l )
-            System.out.println(ls);
+        return l;
 
-        comunicaRota(r, l);
     }
 
-    private void comunicaRota(Robot robot, List<Localizacao> l) {
-        robot.setRota(l);
-    }
 
     @Override
-    public void notificarRecolha(Robot robot) {
+    public void notificarRecolha(Robot robot)
+    {
         robot.setLocalizacao(robot.getPalete().getLocalizacao());
         this.robots.put(robot.getCodRobot(), robot);
         this.robots.put(robot.getCodRobot(), robot);
@@ -103,18 +92,12 @@ public class Transporte implements ITransporte{
     @Override
     public Localizacao destinhoFinal(Robot robot)
     {
-        System.out.println( robot.getRota().get( robot.getRota().size() - 2 ) );
-        return robot.getRota().get( robot.getRota().size() - 1);
+        return robot.getDestino();
     }
 
     @Override
     public boolean haRobots() {
         return this.robots.size() > 0;
-    }
-
-    public void atualizaLocalizacaoRobot(Robot robot, Localizacao localizacao) {
-        this.robots.get(robot.getCodRobot()).setLocalizacao(localizacao);
-        this.robots.put(robot.getCodRobot(), robot);
     }
 
     @Override

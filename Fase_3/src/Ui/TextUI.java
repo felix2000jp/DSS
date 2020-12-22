@@ -2,8 +2,11 @@ package Ui;
 
 import Business.ArmazemFacade;
 import Business.IArmazemFacade;
+import Business.Localizacao;
 import Business.Transporte.Robot;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class TextUI
@@ -68,8 +71,13 @@ public class TextUI
             String cod = scan.nextLine();
             if (this.model.getPalete(cod) != null)
             {
-                this.model.comunicaTransporte(cod);
+                List<Localizacao> list = this.model.comunicaTransporte(cod);
                 System.out.println("Ordem de transporte dada");
+                System.out.println("Eis o caminho a Percorrer: ");
+                for (Localizacao local : list)
+                {
+                    System.out.print(local +  "   ");
+                }
             }
             else
             {
@@ -140,7 +148,7 @@ public class TextUI
     private void comunicaCodigoQR() {
         try
         {
-            System.out.println("Palete");
+            System.out.println();
             System.out.println( this.model.comunicaCodigoQR() );
             System.out.println("Criada com Sucesso");
         }
@@ -152,7 +160,14 @@ public class TextUI
 
     private void consultarListagemLocalizacoes()
     {
-        System.out.println(this.model.consultarListagemLocalizacoes());
+        Map<String, Localizacao> locals = this.model.consultarListagemLocalizacoes();
+
+        System.out.println();
+
+        for(String palete : locals.keySet())
+        {
+            System.out.println(palete + " :     " + locals.get(palete));
+        }
     }
 
 }

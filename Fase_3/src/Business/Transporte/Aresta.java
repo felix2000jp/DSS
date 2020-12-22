@@ -64,10 +64,8 @@ public class Aresta {
 
     @Override
     public String toString() {
-        return "Aresta{" +
-                "inicio=" + inicio +
-                ", destino=" + destino +
-                ", peso=" + peso +
-                '}';
+        return "Inicio:    " + this.inicio +
+               "Destino:   " + this.destino +
+               "Peso:      " + this.peso;
     }
 }

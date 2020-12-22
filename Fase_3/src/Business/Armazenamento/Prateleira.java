@@ -44,7 +44,7 @@ public class Prateleira implements Comparable<Prateleira> {
 
     public String getCodPrateleira()
     {
-        return codPrateleira;
+        return this.codPrateleira;
     }
 
     public void setCodPrateleira(String codPrateleira)
@@ -64,7 +64,7 @@ public class Prateleira implements Comparable<Prateleira> {
 
     public Localizacao getLocalizacao()
     {
-        return localizacao;
+        return this.localizacao;
     }
 
     public void setLocalizacao(Localizacao localizacao)
@@ -74,11 +74,9 @@ public class Prateleira implements Comparable<Prateleira> {
 
     @Override
     public String toString() {
-        return "Prateleira {" +
-                "codPrateleira='" + this.codPrateleira + '\'' +
-                ", palete=" + this.palete +
-                ", localizacao=" + localizacao +
-                '}';
+        return "Prateleira:  " + this.codPrateleira + "\n" +
+               "Palete:      " + this.palete + "\n" +
+               "Localizacao: " + this.localizacao;
     }
 
     @Override
