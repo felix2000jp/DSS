@@ -31,11 +31,9 @@ public class ArmazemFacade implements IArmazemFacade{
     @Override
     public List<Localizacao> comunicaTransporte(String codPalete)
     {
-        Palete p = this.armazenamento.getPalete(codPalete);
-        Localizacao local = p.getLocalizacao();
-        Localizacao destino = this.armazenamento.destinoPalete(local);
-        this.armazenamento.paleteNecessitaTransporte(p);
-        return this.transporte.comunicaTransporte(destino, p);
+        Palete palete = this.armazenamento.getPalete(codPalete);
+        Localizacao destino = this.armazenamento.paleteNecessitaTransporte(palete);
+        return this.transporte.comunicaTransporte(destino, palete);
     }
 
     @Override
@@ -45,14 +43,9 @@ public class ArmazemFacade implements IArmazemFacade{
     }
 
     @Override
-    public void notificarEntrega(Robot robot)
-    {
-        Palete p = this.armazenamento.getPalete(robot.getPalete().getCodPalete());
-        Localizacao fin = this.transporte.destinhoFinal(robot);
-
-
-        this.transporte.notificarEntrega(robot,fin);
-        this.armazenamento.atualizaLocalizacaoPalete(p, fin);
+    public void notificarEntrega(Robot robot){
+        Palete p = this.transporte.notificarEntrega(robot);
+        this.armazenamento.addPalete(p);
     }
 
     @Override

@@ -56,8 +56,8 @@ public class TextUI
         menu.setPreCondition(1, ()->this.model.haPaletes());
 
         // Registar os handlers
-        menu.setHandler(1, ()->comunicaTransporte());
-        menu.setHandler(2, ()->notificarRecolha());
+        menu.setHandler(1, ()->comunicaTransporte()); // Caso tenha tempo
+        menu.setHandler(2, ()->notificarRecolha()); // Nao esta a remover da prateleira nem da necessidade de transporte
         menu.setHandler(3, ()->notificarEntrega());
 
         menu.run();

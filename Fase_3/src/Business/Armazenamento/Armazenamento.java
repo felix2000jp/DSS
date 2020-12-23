@@ -99,24 +99,6 @@ public class Armazenamento implements IArmazenamento {
         return this.paletes.get(codPalete);
     }
 
-    @Override
-    public void atualizaLocalizacaoPalete (Palete palete, Localizacao localizacao)
-    {
-        this.paletes.remove(palete.getCodPalete());
-        palete.setLocalizacao(localizacao);
-        palete.setNecessidadeTransporte(0);
-        this.paletes.put(palete.getCodPalete(),palete);
-
-        for(Prateleira prateleira : this.prateleiras.values())
-        {
-            if( prateleira.getLocalizacao().compareTo(palete.getLocalizacao()) != 0 )
-            {
-                prateleira.setPalete(palete);
-                this.prateleiras.put(prateleira.getCodPrateleira(), prateleira);
-            }
-        }
-    }
-
     public Map<String, Localizacao> determinaListaLocalizacao()
     {
         Map<String, Localizacao> localizacoes = new HashMap<>();
@@ -163,21 +145,42 @@ public class Armazenamento implements IArmazenamento {
     }
 
     @Override
-    public void paleteNecessitaTransporte(Palete palete)
-    {
+    public Localizacao paleteNecessitaTransporte(Palete palete) {
+        Localizacao local = palete.getLocalizacao();
+        Localizacao destino = destinoPalete(local);
+
         palete.setNecessidadeTransporte(1);
+
         this.paletes.put(palete.getCodPalete(),palete);
+
+        return destino;
     }
 
     @Override
     public boolean haPrateleirasVazias() {
         boolean b = false;
+
         Iterator<Prateleira> pr = this.prateleiras.values().iterator();
+
         while (pr.hasNext() && !b){
             if(pr.next().getPalete() == null)
                 b = true;
         }
 
         return b;
+    }
+
+    @Override
+    public void addPalete(Palete p) {
+        this.paletes.put(p.getCodPalete(), p);
+
+        for(Prateleira prateleira : this.prateleiras.values())
+        {
+            if( prateleira.getLocalizacao().compareTo(p.getLocalizacao()) != 0 )
+            {
+                prateleira.setPalete(p);
+                this.prateleiras.put(prateleira.getCodPrateleira(), prateleira);
+            }
+        }
     }
 }

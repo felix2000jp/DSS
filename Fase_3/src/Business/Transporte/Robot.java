@@ -105,5 +105,25 @@ public class Robot {
                 "Destino:     " + this.destino + "\n" +
                 "Palete:      " + this.palete;
     }
+
+    public Palete notificaEntrega(){
+        Localizacao localizacao = this.getDestino();;
+
+        Palete p = this.getPalete().atualizaLocalizacaoNecessidadeTransporte(localizacao, 0);
+
+        this.setDisponivel(1);
+        this.setPalete(null);
+        this.setLocalizacao(localizacao);
+
+        return p;
+    }
+
+    public void comunicaTransporte(Localizacao destino, Palete palete){
+        this.setDisponivel(0);
+        this.setPalete(palete);
+        this.setDestino(destino);
+    }
+
+
 }
 

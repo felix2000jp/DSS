@@ -19,9 +19,7 @@ public interface ITransporte
     void notificarRecolha(Robot robot);
 
     // Notificar entrega de paletes (Actor: Robot)
-    void notificarEntrega(Robot robot, Localizacao localizacao);
+    Palete notificarEntrega(Robot robot);
 
     boolean haRobots();
-
-    Localizacao destinhoFinal(Robot robot);
 }

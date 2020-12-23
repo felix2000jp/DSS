@@ -121,6 +121,12 @@ public class Palete implements Comparable<Palete>{
                "Entidade:    " + this.entidadeRegisto + "\n" +
                "Localizacao: " + this.localizacao;
     }
+
+    public Palete atualizaLocalizacaoNecessidadeTransporte(Localizacao localizacao, int nt){
+        this.setLocalizacao(localizacao);
+        this.setNecessidadeTransporte(nt);
+        return (Palete) this.clone();
+    }
 }
 
 

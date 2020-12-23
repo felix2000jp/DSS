@@ -64,11 +64,11 @@ public class Transporte implements ITransporte{
     }
 
     @Override
-    public List<Localizacao>  comunicaTransporte(Localizacao destino, Palete palete) {
+    public List<Localizacao> comunicaTransporte(Localizacao destino, Palete palete) {
         Robot r = robotDisponivel();
-        r.setDisponivel(0);
-        r.setPalete(palete);
-        r.setDestino(destino);
+
+        r.comunicaTransporte(destino, palete);
+
         this.robots.put(r.getCodRobot(), r);
         List<Localizacao> l = new ArrayList<>();
         l.addAll( mapa.calculaRotas(r.getLocalizacao(), palete.getLocalizacao()) );
@@ -87,17 +87,12 @@ public class Transporte implements ITransporte{
     }
 
     @Override
-    public void notificarEntrega(Robot robot, Localizacao localizacao) {
-        robot.setDisponivel(1);
-        robot.setPalete(null);
-        robot.setLocalizacao(localizacao);
-        this.robots.put(robot.getCodRobot(), robot);
-    }
+    public Palete notificarEntrega(Robot robot) {
 
-    @Override
-    public Localizacao destinhoFinal(Robot robot)
-    {
-        return robot.getDestino();
+        Palete p = robot.notificaEntrega();
+        this.robots.put(robot.getCodRobot(), robot);
+
+        return p;
     }
 
     @Override
