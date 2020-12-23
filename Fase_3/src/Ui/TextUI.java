@@ -56,8 +56,8 @@ public class TextUI
         menu.setPreCondition(1, ()->this.model.haPaletes());
 
         // Registar os handlers
-        menu.setHandler(1, ()->comunicaTransporte()); // Caso tenha tempo
-        menu.setHandler(2, ()->notificarRecolha()); // Nao esta a remover da prateleira nem da necessidade de transporte
+        menu.setHandler(1, ()->comunicaTransporte());
+        menu.setHandler(2, ()->notificarRecolha());
         menu.setHandler(3, ()->notificarEntrega());
 
         menu.run();
@@ -146,7 +146,7 @@ public class TextUI
         menu.run();
     }
 
-    private void comunicaCodigoQR() { // antigo regista palete
+    private void comunicaCodigoQR() {
         try
         {
             System.out.println("\n" + this.model.comunicaCodigoQR() );
@@ -158,7 +158,7 @@ public class TextUI
         }
     }
 
-    private void consultarListagemLocalizacoes() { // antigo determinar lista localizacao
+    private void consultarListagemLocalizacoes() {
         Map<String, Localizacao> locals = this.model.consultarListagemLocalizacoes();
 
         System.out.println();
