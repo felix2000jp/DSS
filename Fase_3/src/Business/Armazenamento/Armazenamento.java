@@ -172,6 +172,7 @@ public class Armazenamento implements IArmazenamento {
 
     @Override
     public void addPalete(Palete p) {
+        this.paletes.remove( p.getCodPalete() );
         this.paletes.put(p.getCodPalete(), p);
 
         for(Prateleira prateleira : this.prateleiras.values())
